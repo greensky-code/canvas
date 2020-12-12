@@ -1,0 +1,13 @@
+#navbarNav{
+    margin-left:20%;
+}
+
+.navbar-nav,.nav-item{
+    margin-left:6%;
+    font-weight:600;
+}
+
+.navbar-nav .nav-item:hover{
+    color:black;
+    font-weight: bold;
+}

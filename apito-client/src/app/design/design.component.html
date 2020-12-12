@@ -1,0 +1,56 @@
+<app-header></app-header>
+<header class="mt-5">
+    <!-- <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+    </label> -->
+    <div class="left_area">
+        <h3>{{'design.Design' | translate}} <span>{{'design.Area' | translate}}</span> </h3>
+    </div>
+    <div class="right_area">
+        <!-- <a (click)="logout()" class="logout_btn">{{'design.logout' | translate}}</a> -->
+        <a *ngIf="addFlag" (click)="addUser()" class="user_btn">{{'design.Add' | translate}}</a>
+    </div>
+</header>
+
+<div class="sidebar">
+    <div class="d-flex flex-column align-items-center">
+        <img [src]="image" class="profile_image" alt="">
+        <h4>{{name}}</h4>
+    </div>
+    <div class="d-flex flex-row justify-content-around">
+        <div class="foo" *ngFor="let color of colors" [style.background]="color.color" [style.outline]="getOutline(color.color)" (click)="addColor(color.color)"></div>
+
+    </div>
+    <div class="d-flex flex-row justify-content-around mt-3">
+        <img class="eraser" [style.filter]="invertValue('line')" src="assets/images/pencil-icon.png" width="30" height="30" (click)='setSelection("line"); addShape("line"); erase = false' alt="">
+        <img class="eraser" [style.filter]="invertValue('text')" src="assets/images/keyboard.png" width="30" height="30" (click)='setSelection("text"); addShape("text"); erase = false' alt="">
+        <img class="eraser" src="assets/images/undo-icon.png" width="30" height="30" (click)='clearSelection(); setSelection("undo"); undo()' alt="">
+        <img class="" [style.filter]="invertValue('erase')" (click)='clearSelection(); setSelection("erase"); erase = true' src="assets/images/eraser-icon.png" width="30" height="30" alt="">
+    </div>
+    <div class="mt-3 px-2" *ngIf="selectedButton['text']">
+        <!-- <mat-slider></mat-slider> -->
+        <form class="example-container" [formGroup]="options">          
+            <mat-form-field appearance="fill" [color]="colorControl.value">
+              <mat-label>{{'design.Font' | translate}}</mat-label>
+              <input matInput type="number" placeholder="Ex. 12" [formControl]="fontSizeControl" min="10">
+              <span matSuffix>px</span>
+              <mat-error *ngIf="fontSizeControl.invalid">Min size: 10px</mat-error>
+            </mat-form-field>
+          </form>
+          <p style="color: beige;">Hit Enter When Done Typing</p>
+    </div>
+    <div class="mt-5 ml-5">
+        <a *ngIf="!saveTo" (click)="saveToDb()" class="save_btn">{{'design.Save' | translate}}</a>
+        <div *ngIf="saveTo" >
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="color:brown!important; display: block; shape-rendering: auto; animation-play-state: running; animation-delay: 0s;" width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+            <g transform="translate(50 50)" style="animation-play-state: running; animation-delay: 0s;">
+            <g transform="rotate(10.2735)" style="animation-play-state: running; animation-delay: 0s;">
+            <animateTransform attributeName="transform" type="rotate" values="0;45" keyTimes="0;1" dur="0.2s" repeatCount="indefinite" style="animation-play-state: running; animation-delay: 0s;"></animateTransform><path d="M29.491524206117255 -5.5 L37.491524206117255 -5.5 L37.491524206117255 5.5 L29.491524206117255 5.5 A30 30 0 0 1 24.742744050198738 16.964569457146712 L24.742744050198738 16.964569457146712 L30.399598299691117 22.621423706639092 L22.621423706639096 30.399598299691114 L16.964569457146716 24.742744050198734 A30 30 0 0 1 5.5 29.491524206117255 L5.5 29.491524206117255 L5.5 37.491524206117255 L-5.499999999999997 37.491524206117255 L-5.499999999999997 29.491524206117255 A30 30 0 0 1 -16.964569457146705 24.742744050198738 L-16.964569457146705 24.742744050198738 L-22.621423706639085 30.399598299691117 L-30.399598299691117 22.621423706639092 L-24.742744050198738 16.964569457146712 A30 30 0 0 1 -29.491524206117255 5.500000000000009 L-29.491524206117255 5.500000000000009 L-37.491524206117255 5.50000000000001 L-37.491524206117255 -5.500000000000001 L-29.491524206117255 -5.500000000000002 A30 30 0 0 1 -24.742744050198738 -16.964569457146705 L-24.742744050198738 -16.964569457146705 L-30.399598299691117 -22.621423706639085 L-22.621423706639092 -30.399598299691117 L-16.964569457146712 -24.742744050198738 A30 30 0 0 1 -5.500000000000011 -29.491524206117255 L-5.500000000000011 -29.491524206117255 L-5.500000000000012 -37.491524206117255 L5.499999999999998 -37.491524206117255 L5.5 -29.491524206117255 A30 30 0 0 1 16.964569457146702 -24.74274405019874 L16.964569457146702 -24.74274405019874 L22.62142370663908 -30.39959829969112 L30.399598299691117 -22.6214237066391 L24.742744050198738 -16.964569457146716 A30 30 0 0 1 29.491524206117255 -5.500000000000013 M0 -20A20 20 0 1 0 0 20 A20 20 0 1 0 0 -20" fill="#f88536" style="animation-play-state: running; animation-delay: 0s;"></path></g></g>
+            <!-- [ldio] generated by https://loading.io/ --></svg>
+          
+          </div>
+    </div>
+</div>
+<div class="content">
+    <div id="container" [style.background-image]="backgroundImage()" [style.background-size]="'cover'"></div>
+</div>

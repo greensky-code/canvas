@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "apito-e9bde": {
+      "hosting": {
+        "client": [
+          "apito-e9bde"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "apito-e9bde"
+  }
+}

@@ -1,0 +1,322 @@
+
+ a:visited{
+    text-decoration:black;
+    color:black;
+  }
+         
+   /* a:hover{
+    text-decoration: underline;
+    color:black;
+   } */
+         
+  
+  #navbarNav{
+      margin-left:58%;
+  }
+  
+  .navbar-nav,.nav-item{
+      margin-left:6%;
+      font-weight:600;
+  }
+  
+  .navbar-nav .nav-item:hover{
+      color:black;
+      font-weight: bold;
+  }
+  
+  .hero-image{
+      background:
+        url(../../assets/images/georgia-de-lotz-1n_HNfGVBxE-unsplash.jpg ) center/cover no-repeat;
+        height:550px;
+      }
+  
+      .h1one{
+          text-align:center;
+          width:60%;
+          margin-top:15%;
+          margin-left:20%;
+          font-weight: 300;
+      }
+  
+      .btn1{
+          margin-top:2%;
+          margin-left:45%;
+          padding:5px 50px;
+          border-radius:6%;
+          outline:0;
+          border:2px solid black;
+  
+      }
+  
+      #two{
+          text-align:center;
+      }
+  
+      .pone{
+          margin-top:1%;
+          font-size:18px;
+      }
+  
+      .h5one{
+          width:60%;
+          margin-left:25%;
+          font-size:20px;
+          font-weight:400;
+      }
+  
+  #three .row{
+      margin-top:5%;
+  }
+  
+  #four .row{
+      margin-top:5%;
+  }
+  
+  #five .row{
+      margin-top:5%;
+  }
+  
+  .img1{
+      width:70%;
+      height:80%;
+      margin-left:15%;
+  }
+  
+  .img2{
+      width:80%;
+      height:80%;
+  }
+  
+  .img3{
+      width:80%;
+      height:80%;
+      margin-left:15%;
+  }
+  
+  .h5two{
+      font-weight: 700;
+      width:30%;
+      font-size:25px;
+  }
+  
+  .ptwo{
+      font-size:18px;
+      width:50%;
+      font-weight: 400;
+  }
+  
+  .h5three{
+      font-weight: 700;
+      width:30%;
+      font-size:25px;
+      margin-left:15%;
+  }
+  
+  .pthree{
+      font-size:18px;
+      width:50%;
+      font-weight: 400;
+      margin-left:15%;
+  }
+  
+  .hero-image1{
+      margin-top:3%;
+    }
+  
+  .h5four{
+      text-align:center;
+      font-size:32px;
+      margin-top: 3%;      
+  }
+  
+  .pfour{
+      text-align:center;
+      font-weight:400;
+      margin-top: 1%;
+      font-size: 24px;
+  
+  }
+  
+  .btn2{
+      margin-left:45%;
+      margin-top:1.7%;
+      padding:5px 30px;
+      outline:0;
+      border-radius:6%;
+      border:2px solid black;
+      font-size:20px;
+      font-weight:700;
+  
+  }
+  
+  #eight{
+          background:
+            url(../../assets/images/georgia-de-lotz-1n_HNfGVBxE-unsplash.jpg) center/cover no-repeat;
+            height:210px;
+            margin-top:2%;
+          
+  }
+  
+  .first{
+      display: none;
+  }
+  
+  @media (max-width: 576px) {
+      body{
+          width:142%;
+      }
+      #navbarNav{
+          margin-left:58%;
+      }
+      
+      .navbar-nav,.nav-item{
+          margin-left:6%;
+          font-weight:600;
+      }
+      
+      .navbar-nav .nav-item:hover{
+          color:black;
+          font-weight: bold;
+      }
+      
+      .hero-image{
+          background:
+            url(../../assets/images/georgia-de-lotz-1n_HNfGVBxE-unsplash.jpg ) center/cover no-repeat;
+            height:550px;
+          }
+          .h1one{
+              text-align:center;
+              width:80%;
+              margin-top:15%;
+              margin-left:10%;
+              font-weight: 300;
+          }
+  
+          .btn1{
+              margin-left:35%;
+          }
+      
+          #two{
+              text-align:center;
+          }
+      
+          .pone{
+              margin-top:1%;
+              font-size:26px;
+          }
+      
+          .h5one{
+              width:80%;
+              margin-left:14%;
+              font-size:25px;
+              font-weight:400;
+          }
+      
+      #three .row{
+          margin-top:5%;
+      }
+      
+      #four .row{
+          margin-top:5%;
+      }
+      
+      #five .row{
+          margin-top:5%;
+      }
+      
+      .img1{
+          width:60%;
+          height:80%;
+          margin-left:15%;
+      }
+      
+      .img2{
+          width:80%;
+          height:80%;
+      }
+      
+      .img3{
+          width:80%;
+          height:80%;
+          margin-left:15%;
+      }
+      
+      .h5two{
+          font-weight: 700;
+          font-size:35px;
+          margin-left:17%;
+          width:90%;
+  
+      }
+      
+      .ptwo{
+          font-size:21px;
+          font-weight: 400;
+          margin-left:19%;
+          width:70%;
+      }
+      
+      .h5three{
+          font-weight: 700;
+          font-size:35px;
+          margin-left:17%;
+          width:90%;
+      }
+      
+      .pthree{
+          font-size:21px;
+          font-weight: 400;
+          margin-left:19%;
+          width:70%;
+      }
+      
+      .hero-image1{
+          margin-top:3%;
+        }
+      
+      .h5four{
+          text-align:center;
+          font-size:36px;
+          margin-top: 3%;      
+      }
+      
+      .pfour{
+          text-align:center;
+          font-weight:400;
+          margin-top: 1%;
+          font-size: 24px;
+      
+      }
+      
+      .btn2{
+          margin-left:34%;
+          margin-top:1.7%;
+          padding:5px 30px;
+          outline:0;
+          border-radius:6%;
+          border:2px solid black;
+          font-size:20px;
+          font-weight:700;
+      
+      }
+      
+      #eight{
+              background:
+                url(../../assets/images/georgia-de-lotz-1n_HNfGVBxE-unsplash.jpg) center/cover no-repeat;
+                height:210px;
+                margin-top:2%;
+              
+      }
+  
+      #playstore,#applestore{
+          margin-top:5%;
+      }
+  
+      .last{
+          display:none;
+      }
+  
+      .first{
+          display:block;
+      }
+  }

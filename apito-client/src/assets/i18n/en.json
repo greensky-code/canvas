@@ -1,0 +1,57 @@
+{
+    "nav": {
+        "Home": "Home",
+        "Design": "Design",
+        "About": "About",
+        "Login": "Login",
+        "SignUp": "SignUp",
+        "Contact": "Contact",
+        "Welcome": "Welcome",
+        "Logout": "Logout"
+    },
+    "landing": {
+        "Customize": "Customize Your Wedding,Birthday,Party and Any Other Card Easily",
+        "Create": "Create Now",
+        "ecardy": "ecardy is a brand that specializes in the making of invitation cards,party cards,birthday cards,wedding cards and any other card of your choice.",
+        "Birthday": "BIRTHDAY CARD",
+        "Wedding": "WEDDING CARD",
+        "Thanksgiving": "THANKSGIVING CARD",
+        "Designs": "Create Your Designs",
+        "You": "You can create your designs by adding background-image,color,text and so on",
+        "Start": "Start Now"
+    },
+    "login": {
+        "Sign": "Sign in",
+        "Create":"Create an account",
+        "Or": "Or login with"
+    },
+    "sign": {
+        "Sign": "Sign up",
+        "Register":"Register",
+        "I": "I am already a member"
+    },
+    "modal": {
+        "add": {
+            "User": "User Email",
+            "Add": "Add"
+        },
+        "create": {
+            "Name": "Name Of Design",
+            "Give": "Create"
+        }
+
+    },
+    "home": {
+        "Choose": "Choose a Template",
+        "Upload":"Upload Template",
+        "Recent": "Recent works"
+    },
+    "design": {
+        "Design": "Design",
+        "Area": "Area",
+        "logout": "Logout",
+        "Add": "Add User",
+        "Font": "Font size",
+        "Save": "Save Work"
+    }
+}

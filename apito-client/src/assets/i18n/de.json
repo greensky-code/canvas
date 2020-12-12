@@ -1,0 +1,57 @@
+{
+    "nav": {
+        "Home": "Zuhause",
+        "Design": "Design",
+        "About": "Über",
+        "Login": "Einloggen",
+        "SignUp": "Anmelden",
+        "Contact": "Kontakt",
+        "Welcome": "Herzlich willkommen",
+        "Logout": "Ausloggen"
+    },
+    "landing": {
+        "Customize": "Passen Sie Ihre Hochzeit, Geburtstag, Party und jede andere Karte leicht an",
+        "Create": "Jetzt erstellen",
+        "ecardy": "ecardy ist eine Marke, die sich auf die Herstellung von Einladungskarten, Partykarten, Geburtstagskarten, Hochzeitskarten und anderen Karten Ihrer Wahl spezialisiert hat.",
+        "Birthday": "GEBURTSTAGSKARTE",
+        "Wedding": "HOCHZEITSKARTE",
+        "Thanksgiving": "DANKE KARTE",
+        "Designs": "Erstellen Sie Ihre Designs",
+        "You": "Sie können Ihre Designs erstellen, indem Sie Hintergrundbild, Farbe, Text usw. hinzufügen",
+        "Start": "Jetzt anfangen"
+    },
+    "login": {
+        "Sign": "Einloggen",
+        "Create":"Ein Konto erstellen",
+        "Or": "Oder melden Sie sich mit an"
+    },
+    "sign": {
+        "Sign": "Anmelden",
+        "Register":"Registrieren",
+        "I": "Ich bin bereits Mitglied"
+    },
+    "modal": {
+        "add": {
+            "User": "Benutzer Email",
+            "Add": "Hinzufügen"
+        },
+        "create": {
+            "Name": "Name des Designs",
+            "Give": "Erstellen"
+        }
+
+    },
+    "home": {
+        "Choose": "Wählen Sie eine Vorlage",
+        "Upload":"Vorlage hochladen",
+        "Recent": "Neueste Arbeiten"
+    },
+    "design": {
+        "Design": "Design",
+        "Area": "Bereich",
+        "logout": "Ausloggen",
+        "Add": "Benutzer hinzufügen",
+        "Font": "Schriftgröße",
+        "Save": "Arbeit speichern"
+    }
+}

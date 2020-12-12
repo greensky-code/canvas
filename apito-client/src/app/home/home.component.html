@@ -1,0 +1,36 @@
+<app-header></app-header>
+<div class="work-section">
+    <div class="work-section-heading">
+        <h3 class="">Choose a Template</h3>
+    </div>
+    <div class="work">
+        <img *ngFor="let image of images" [src]="image.src" alt="" (click)="openDialog($event)">
+    </div>
+</div>
+
+<div class="work-section">
+    <div class="work-section-heading">
+        <h3 class="">Upload Template</h3>
+    </div>
+    <div class="work">
+        <img *ngFor="let image of uploads" [src]="image.src" alt="" (click)="openDialog($event)">
+    </div>
+    <div class="add">
+        <img src="assets/images/plus.png" class="plus" (click)="filePicker1.click()" alt="">
+    </div>
+</div>
+
+<div class="work-section">
+    <div class="work-section-heading">
+        <h3 class="">Recent works</h3>
+    </div>
+    <div class="container">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let can of canvas; let i = index" [ngClass]="{'list-group-item-primary': getColor(i), 'list-group-item-light': getColor1(i) }"><a [routerLink]="['/design', can?._id]">{{can?.name}}</a></li>
+          </ul>
+
+    </div>
+</div>
+
+
+<input type="file" name="image1" #filePicker1 (change)="onImagePicked($event)">
