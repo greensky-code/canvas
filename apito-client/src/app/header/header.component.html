@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <span class="d-flex" *ngIf="isAuth">
     <img src="assets/images/profile-icon.png" width="40" alt="">
-    <h4 class="mt-1 pl-1" style="color: rgba(0,0,0,.5);">{{'nav.Welcome' | translate}} <span
-        style="color: #6dabe4; font-size: 20px;">{{user?.name}}</span></h4>
+    <a href=""><h4 class="mt-1 pl-1" style="color: rgba(0,0,0,.5);">{{'nav.Welcome' | translate}} <span
+        style="color: #6dabe4; font-size: 20px;">{{user?.name}}</span></h4></a>
   </span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
     aria-expanded="false" aria-label="Toggle navigation">
@@ -17,6 +17,9 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/home">{{'nav.Design' | translate}}</a>
       </li>
+      <li class="nav-item" *ngIf="isAuth">
+        <a class="nav-link" href="/profile">{{'nav.Profile' | translate}}</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="#">{{'nav.About' | translate}}</a>
       </li>
@@ -26,11 +29,11 @@
       <li class="nav-item" *ngIf="!isAuth">
         <a class="nav-link" routerLink="/sign">{{'nav.SignUp' | translate}}</a>
       </li>
-      <li class="nav-item" *ngIf="isAuth">
-        <a class="nav-link" (click)="logout()">{{'nav.Logout' | translate}}</a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="#">{{'nav.Contact' | translate}}</a>
+      </li>
+      <li class="nav-item" *ngIf="isAuth">
+        <a class="nav-link" (click)="logout()">{{'nav.Logout' | translate}}</a>
       </li>
       <li class="nav-item">
         <select style="width: 100px;" class="nav-link custom-select" (change)="changeLang($event.target.value)">
