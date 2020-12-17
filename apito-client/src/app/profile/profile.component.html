@@ -1,111 +1,29 @@
-<app-header></app-header>
-<!-- Tab links -->
-<div class="tab">
-    <button class="tablinks" (click)="openTab($event, 'Profile')">Profile</button>
-    <button class="tablinks" (click)="openTab($event, 'Person')">Person</button>
-    <button class="tablinks" (click)="openTab($event, 'Company')">Company</button>
-  </div>
-  
-  <!-- Tab content -->
-  <div id="Profile" class="tabcontent active">
-    <h3>Profile</h3>
-    <p>Profile view/edit </p>
-  </div>
-  
-  <div id="Person" class="tabcontent">
-    <h3>Person</h3>
-    <p>Person List</p>
-    <p>View/Edit Person List</p>
-    <input type="button" style="padding: 0.7em; margin-top: 1em; margin-bottom: 0.5em; float: right;" value="+ Add new Person"/>
-    <input type="text" placeholder="Search..." />
-    <table>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Birthday</th>
-          <th>Address</th>
-        </tr>
-        <tr>
-          <td>Walter</td>
-          <td>walter@gmail.com</td>
-          <td>2nd Oct 1990</td>
-          <td>Maxico</td>
-          <td>
-              <input type="button" placeholder="Edit" value="Edit"/>
-          </td>
-        </tr>
-        <tr>
-          <td>Test Person</td>
-          <td>Francisco Chang</td>
-          <td>13th May 1990</td>
-          <td>32, 2nd cross, Bangalore, India</td>
-          <td>
-            <input type="button" placeholder="Edit" value="Edit"/>
-        </td>
-        </tr>
-      </table>
-  </div>
-  
-  <div id="Company" class="tabcontent">
-    <h3>Company</h3>
-    <p>View/Edit Company List</p>
-    <input type="button" style="padding: 0.7em; margin-top: 1em; margin-bottom: 0.5em; float: right;" value="+ Add new Company"/>
-    <input type="text" placeholder="Search..." />
-    <table>
-        <tr>
-          <th>Company</th>
-          <th>Contact</th>
-          <th>Country</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>
-              <input type="button" placeholder="Edit" value="Edit"/>
-          </td>
-        </tr>
-        <tr>
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
-          <td>
-            <input type="button" placeholder="Edit" value="Edit"/>
-        </td>
-        </tr>
-        <tr>
-          <td>Ernst Handel</td>
-          <td>Roland Mendel</td>
-          <td>Austria</td>
-          <td>
-            <input type="button" placeholder="Edit" value="Edit"/>
-        </td>
-        </tr>
-        <tr>
-          <td>Island Trading</td>
-          <td>Helen Bennett</td>
-          <td>UK</td>
-          <td>
-            <input type="button" placeholder="Edit" value="Edit"/>
-        </td>
-        </tr>
-        <tr>
-          <td>Laughing Bacchus Winecellars</td>
-          <td>Yoshi Tannamuri</td>
-          <td>Canada</td>
-          <td>
-            <input type="button" placeholder="Edit" value="Edit"/>
-        </td>
-        </tr>
-        <tr>
-          <td>Magazzini Alimentari Riuniti</td>
-          <td>Giovanni Rovelli</td>
-          <td>Italy</td>
-          <td>
-            <input type="button" placeholder="Edit" value="Edit"/>
-        </td>
-        </tr>
-      </table>
-      
-  </div>
+<app-submenu></app-submenu>
+
+<section class="signup">
+    <div class="container">
+        <div class="signup-content">
+            <div class="signup-form">
+                <h2 class="form-title">Profile View/Edit</h2>
+                <form [formGroup]="form" class="register-form" (submit)="onUpdate()">
+                    <div class="form-group">
+                        <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                        <input type="text" formControlName="name" id="name" placeholder="Your Name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="zmdi zmdi-email"></i></label>
+                        <input type="email" formControlName="email" id="email" placeholder="Your Email"/>
+                    </div>
+                    <div class="form-group" style="margin-top: -1em;">
+                        <label for="birthday"><i class="zmdi zmdi-date"></i>Birthday:</label>
+                        <input type="date" style="margin-top: 3em;" formControlName="birthday" id="birthday" placeholder="Birthday"/>
+                    </div>
+                      <br/>
+                    <div class="form-group form-button">
+                        <button type="submit" class="form-submit">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

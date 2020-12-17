@@ -77,4 +77,17 @@ export class AuthService {
     return this.http.get(`${this.authUrl}user`)
   }
 
+  addPerson(form){
+    const data = form
+    console.log(data);
+    data.user_id = 
+    this.http.post(`${this.authUrl}addPerson`, data).subscribe(res => {
+      this.toastr.success("Person added Succesfully")
+      //this.router.navigate(["/person"])
+    })
+  }
+
+  getPerson(id) {
+    return this.http.get(`${this.authUrl}getPerson/${id}`)
+  }
 }

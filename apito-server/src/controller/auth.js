@@ -2,14 +2,16 @@ const crypto = require('crypto');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const User = require('../models/User');
+const Person = require('../models/Person');
 
 const register = asyncHandler(async(req,res,next)=>{
-    const { name, email, password, birthday, role} = req.body
+    const { name, email, password, birthday, profile_pic, role} = req.body
     const user = await User.create({
         name,
         email,
         password,
         birthday,
+        profile_pic,
         role
     })
     sendTokenResponse(user, 200,res)
@@ -154,4 +156,39 @@ const logout = asyncHandler(async(req,res,next)=> {
     })
 })
 
-module.exports = { register, login, loggedInUser, forgotPassword, resetPassword, updateDetails, updatePassword, logout}
+const addPerson = asyncHandler(async(req,res,next)=>{
+    const {user_id, name, email, address, birthday, phone} = req.body
+    const person = await Person.create({
+        user_id,
+        name,
+        email,
+        address,
+        birthday,
+        phone
+    })
+    res.status(200).json({
+        success: true,
+        data: person
+    })
+})
+
+const getPerson = asyncHandler(async(req,res,next)=> {
+    const persons = await Person.find({user_id: req.param.user_id})
+    res.status(200).json({
+        success: true,
+        data: persons
+    })
+})
+
+module.exports = { 
+    register, 
+    login, 
+    loggedInUser, 
+    forgotPassword, 
+    resetPassword, 
+    updateDetails, 
+    updatePassword, 
+    logout,
+    addPerson,
+    getPerson
+}

@@ -1,0 +1,69 @@
+<app-submenu></app-submenu>
+  <div id="Person" class="tabcontent">
+    <h3>Person</h3>
+    <p>Person List</p>
+    <p>View/Edit Person List</p>
+    <input type="button" style="padding: 0.7em; margin-top: 1em; margin-bottom: 0.5em; float: right;" value="+ Add new Person" (click)="toggleModal()"/>
+    <input type="text" placeholder="Search..." />
+    <table>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Birthday</th>
+          <th>Address</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>Walter</td>
+          <td>walter@gmail.com</td>
+          <td>2nd Oct 1990</td>
+          <td>Maxico</td>
+          <td>
+              <input type="button" placeholder="Edit" value="Edit"/>
+          </td>
+        </tr>
+        <tr>
+          <td>Test Person</td>
+          <td>Francisco Chang</td>
+          <td>13th May 1990</td>
+          <td>32, 2nd cross, Bangalore, India</td>
+          <td>
+            <input type="button" placeholder="Edit" value="Edit"/>
+        </td>
+        </tr>
+      </table>
+  </div>
+  <div class="wrapper" [ngStyle]="(isModalVisible)? {'visibility': 'visible'} : {'visibility': 'hidden'}"> 
+      <!-- Fixed element that spans the viewport -->
+    <div class="element">
+        <h4>Add New Person</h4>
+        <form [formGroup]="form" (submit)="addPerson()">
+            <div class="form-group">
+                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                <input type="text" formControlName="name" id="name" placeholder="Person Name"/>
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                <input type="email" formControlName="email" id="email" placeholder="Person Email"/>
+            </div>
+            <div class="form-group">
+                <label for="phone"><i class="zmdi zmdi-phone"></i></label>
+                <input type="tel" formControlName="phone" id="phone" placeholder="Person Phone"/>
+            </div>
+            <div class="form-group" style="margin-top: -1em;">
+                <label for="birthday"><i class="zmdi zmdi-date"></i>Birthday:</label>
+                <input type="date" style="margin-top: 3em;" formControlName="birthday" id="birthday" placeholder="Birthday"/>
+            </div>
+            <div class="form-group" style="margin-top: -1em;">
+                <label for="address"><i class="zmdi zmdi-address"></i>Address:</label>
+                <textarea style="margin-top: 3em;" formControlName="address" id="address" placeholder="Address"></textarea>
+            </div>
+            <br/>
+            
+            <div class="form-group form-button">
+                <button type="submit" class="form-submit" style="float: left;">Create</button>
+                <button type="button" class="form-submit" style="float: right;" (click)="toggleModal()">Cancel</button>
+            </div>
+        </form>
+    </div> <!-- Person actual centered element -->
+  </div>

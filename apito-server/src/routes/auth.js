@@ -1,5 +1,5 @@
 const express = require('express');
-const {register, login, loggedInUser, forgotPassword, resetPassword, updateDetails, updatePassword, logout} = require('../controller/auth');
+const {register, login, loggedInUser, forgotPassword, resetPassword, updateDetails, updatePassword, logout, addPerson, getPerson} = require('../controller/auth');
 const { protect } = require('../middleware/auth');
 const router = express.Router() 
 
@@ -20,5 +20,12 @@ router
     .put('/password', updatePassword)
 router
     .get('/user', protect, loggedInUser)
+
+router
+    .post('/addPerson', addPerson)
+
+router
+    .get('/getPerson/:user_id', getPerson)
+
 
 module.exports = router;

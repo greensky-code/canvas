@@ -1,0 +1,50 @@
+.tabcontent{
+    padding-top: 1em;
+}
+table {
+    /* font-family: arial, sans-serif; */
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  .wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    
+    /* this is what centers your element in the fixed wrapper*/
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center; /* aligns on vertical for column */
+    align-items: center; /* aligns on horizontal for column */
+    
+    /* just for styling to see the limits */
+    /* border: 2px dashed red; */
+    box-sizing: border-box;
+    background: rgb(179 179 179 / 52%);
+  }
+  
+  .element {
+    width: 30%;
+    height: auto;
+    padding: 2em;
+    /* Just for styling */
+    background-color: lightyellow;
+    /* border: 2px dashed purple; */
+    position: absolute;
+    top: 6em;
+  }
+  #Person{
+      padding: 1em;
+  }

@@ -31,6 +31,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { environment } from '../environments/environment';
 import { ProfileComponent } from './profile/profile.component';
+import { PersonComponent } from './person/person.component';
+import { CompanyComponent } from './company/company.component';
+import { SubmenuComponent } from './submenu/submenu.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { ProfileComponent } from './profile/profile.component';
     LandingComponent,
     HeaderComponent,
     DesignComponent,
-    ProfileComponent
+    ProfileComponent,
+    PersonComponent,
+    CompanyComponent,
+    SubmenuComponent
   ],
   imports: [
     BrowserModule,

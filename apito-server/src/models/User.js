@@ -1,7 +1,31 @@
 const crypto = require("crypto")
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+var cloudinary = require('cloudinary').v2;
+var multer = require('multer'); 
+const dotenv = require("dotenv")
+
+dotenv.config({ path: '../../config/config.env' })
+
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+  });
+    
+  var storage = multer.diskStorage({ 
+      destination: (req, file, cb) => { 
+          cb(null, 'uploads') 
+      }, 
+      filename: (req, file, cb) => { 
+          cb(null, file.fieldname + '-' + Date.now()) 
+      } 
+  }); 
+    
+  var upload = multer({ storage: storage });
+
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -26,6 +50,10 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Add a password"],
         minlength: 6,
         select: false
+    },
+    profile_pic: {
+        type: String,
+        required: false
     },
     birthday: {
         type: Date,
