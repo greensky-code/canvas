@@ -134,7 +134,7 @@ const updatePassword = asyncHandler(async(req,res,next)=> {
     //     name: req.body.name,
     //     email: req.body.email
     // }
-    let user = await User.findById(req.user.id).select('+password');
+    let user = await User.findById(req.body.user.id).select('+password');
     if ((await user.matchPassword(req.body.currentPassword))) {
         return next(new ErrorResponse('Password is incorrect', 400))   
     }
@@ -182,6 +182,25 @@ const getPerson = asyncHandler(async(req,res,next)=> {
     })
 })
 
+const updatePerson = asyncHandler(async(req,res,next)=> {
+    const fields = {
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        birthday: req.body.birthday,
+        address: req.body.address
+    }
+    const person = await Person.findByIdAndUpdate(req.body.person.id, fields, {
+        new:true,
+        runValidators: true
+    })
+    
+    res.status(200).json({
+        success: true,
+        data: person
+    })
+})
+
 module.exports = { 
     register, 
     login, 
@@ -192,5 +211,6 @@ module.exports = {
     updatePassword, 
     logout,
     addPerson,
-    getPerson
+    getPerson,
+    updatePerson
 }
