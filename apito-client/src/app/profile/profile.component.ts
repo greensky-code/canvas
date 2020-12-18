@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import{ChangePasswordComponent} from '../dialog/change-password/change-password.component'
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +15,10 @@ export class ProfileComponent implements OnInit {
   imageSrc;
   user;
   lang;
-  constructor(private authService: AuthService) { }
+
+  private changePasswordComponent = ChangePasswordComponent;
+
+  constructor(private authService: AuthService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.isAuth = this.authService.getAuth();
@@ -79,5 +84,14 @@ export class ProfileComponent implements OnInit {
       };
    
     }
+  }
+
+  public changePassword() {
+
+    this.dialog.open(this.changePasswordComponent, {
+      data: {
+        user: this.user
+      }
+    });
   }
 }

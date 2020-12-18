@@ -57,15 +57,6 @@ export class PersonAddEditComponent implements OnInit {
     console.log('dataPass', this.data);
   }
 
-
-  addPerson() {
-    if (this.form.invalid) {
-      return;
-    }
-    this.form.value.user_id = this.user._id
-    this.authService.addPerson(this.form.value)
-  }
-
   actionRelated() {
     if (this.data.mode == 'add') {
       //add mode
@@ -79,7 +70,16 @@ export class PersonAddEditComponent implements OnInit {
       }, 1000)
     } else {
       //edit mode 
-      alert('person details edited.')
+      if (this.form.invalid) {
+        return;
+      }
+      this.form.value.person = {
+        id: this.data._id
+      }
+      this.authService.updatePerson(this.form.value);
+      setTimeout(()=>{
+        window.location.reload();
+      }, 1000)
     }
   }
 

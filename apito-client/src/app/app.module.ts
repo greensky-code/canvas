@@ -40,6 +40,7 @@ import { CompanyComponent } from './company/company.component';
 import { SubmenuComponent } from './submenu/submenu.component';
 import { PersonAddEditComponent } from './dialog/person-add-edit/person-add-edit.component';
 import { CompanyAddEditComponent } from './dialog/company-add-edit/company-add-edit.component';
+import { ChangePasswordComponent } from './dialog/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { CompanyAddEditComponent } from './dialog/company-add-edit/company-add-e
     CompanyComponent,
     SubmenuComponent,
     PersonAddEditComponent,
-    CompanyAddEditComponent
+    CompanyAddEditComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -97,4 +97,22 @@ export class AuthService {
   getPerson(id) {
     return this.http.get(`${this.authUrl}getPerson/${id}`)
   }
+
+  updatePerson(form) {
+    const data = form
+    console.log(data);
+    this.http.put(`${this.authUrl}updatePerson`, data).subscribe(res => {
+      this.toastr.success("Person Details Updated Succesfully")
+      this.router.navigate(["/person"])
+    })
+  }
+
+  updatePassword(form) {
+    const data = form
+    console.log(data);
+    this.http.put(`${this.authUrl}password`, data).subscribe(res => {
+      this.toastr.success("Password updated Succesfully")
+      this.router.navigate(["/profile"])
+    })
+  }
 }
