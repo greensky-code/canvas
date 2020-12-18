@@ -5,13 +5,13 @@ const User = require('../models/User');
 const Person = require('../models/Person');
 
 const register = asyncHandler(async(req,res,next)=>{
-    const { name, email, password, birthday, profile_pic, role} = req.body
+    const { name, email, password, birthday, fileSource, role} = req.body
     const user = await User.create({
         name,
         email,
         password,
         birthday,
-        profile_pic,
+        fileSource,
         role
     })
     sendTokenResponse(user, 200,res)
@@ -110,9 +110,11 @@ const resetPassword = asyncHandler(async(req,res,next)=> {
 const updateDetails = asyncHandler(async(req,res,next)=> {
     const fields = {
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+        fileSource: req.body.fileSource,
+        birthday: req.body.birthday
     }
-    const user = await User.findByIdAndUpdate(req.user.id, fields, {
+    const user = await User.findByIdAndUpdate(req.body.user.id, fields, {
         new:true,
         runValidators: true
     })
@@ -173,7 +175,7 @@ const addPerson = asyncHandler(async(req,res,next)=>{
 })
 
 const getPerson = asyncHandler(async(req,res,next)=> {
-    const persons = await Person.find({user_id: req.param.user_id})
+    const persons = await Person.find({"user_id.$oid": req.param.user_id})
     res.status(200).json({
         success: true,
         data: persons

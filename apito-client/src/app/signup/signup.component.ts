@@ -18,8 +18,8 @@ export class SignupComponent implements OnInit {
       name: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
       password: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
       birthday: new FormControl(null, { validators: [Validators.required, Validators.minLength(1)] }),
-      file: new FormControl('', [Validators.required]),
-      fileSource: new FormControl('', [Validators.required])
+      file: new FormControl(''),
+      fileSource: new FormControl('')
     })
   }
 

@@ -2,8 +2,8 @@
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    padding-top: 5em;
+    background-color: #b1b1b1;
+    padding-top: 3.5em;
   }
   
   /* Style the buttons that are used to open the tab content */
@@ -15,6 +15,9 @@
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
   }
   
   /* Change background color of buttons on hover */

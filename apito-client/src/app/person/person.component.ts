@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { timestamp } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PersonAddEditComponent } from '../dialog/person-add-edit/person-add-edit.component';
+import { MatTableDataSource } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-person',
@@ -9,14 +13,28 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./person.component.css']
 })
 export class PersonComponent implements OnInit {
-
+  displayedColumns: string[] = [
+    'name', 
+    'email', 
+    'phone', 
+    'birthday',
+    'address',
+    'options'
+  ];
+  dataSource: any;
   isModalVisible: Boolean = false;
   isAuth
   form: FormGroup;
   user;
   lang;
   persons;
-  constructor(private authService: AuthService) { }
+
+  private personAddEditComponent = PersonAddEditComponent;
+
+  constructor(
+    private authService: AuthService,
+    public dialog: MatDialog
+    ) { }
 
   ngOnInit(): void {
     this.isAuth = this.authService.getAuth();
@@ -45,16 +63,33 @@ export class PersonComponent implements OnInit {
   getPersons(){
     this.authService.getPerson(this.user._id).subscribe((res:any)=> {
       console.log(res);
-      this.persons = res.data;
+      this.dataSource = new MatTableDataSource(res.data);
     });
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   addPerson() {
-    if (this.form.invalid) {
-      return;
-    }
-    this.form.value.user_id = this.user._id
-    this.authService.addPerson(this.form.value)
+    this.dialog.open(this.personAddEditComponent, {
+      data: {
+        mode: 'add'
+      }
+    });
+  }
+
+  deleteRecord(recordId) {
+
+  }
+
+  
+  public editRecord(record) {
+    record.mode = 'edit';
+    this.dialog.open(this.personAddEditComponent, {
+      data: record
+    });
   }
 
 }

@@ -31,7 +31,14 @@ export class AuthService {
       this.toastr.success("User Created Succesfully")
       this.router.navigate(["/login"])
     })
-
+  }
+  updateProfile(form) {
+    const data = form
+    console.log(data);
+    this.http.put(`${this.authUrl}update`, data).subscribe(res => {
+      this.toastr.success("User Updated Succesfully")
+      this.router.navigate(["/profile"])
+    })
   }
   login(form, url) {
     console.log(url);

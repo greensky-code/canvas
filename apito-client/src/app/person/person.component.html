@@ -1,37 +1,61 @@
 <app-submenu></app-submenu>
   <div id="Person" class="tabcontent">
-    <h3>Person</h3>
-    <p>Person List</p>
-    <p>View/Edit Person List</p>
-    <input type="button" style="padding: 0.7em; margin-top: 1em; margin-bottom: 0.5em; float: right;" value="+ Add new Person" (click)="toggleModal()"/>
-    <input type="text" placeholder="Search..." />
-    <table>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Birthday</th>
-          <th>Address</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td>Walter</td>
-          <td>walter@gmail.com</td>
-          <td>2nd Oct 1990</td>
-          <td>Maxico</td>
-          <td>
-              <input type="button" placeholder="Edit" value="Edit"/>
-          </td>
-        </tr>
-        <tr>
-          <td>Test Person</td>
-          <td>Francisco Chang</td>
-          <td>13th May 1990</td>
-          <td>32, 2nd cross, Bangalore, India</td>
-          <td>
-            <input type="button" placeholder="Edit" value="Edit"/>
-        </td>
-        </tr>
+    <h4>Person List</h4>
+    <!-- <input type="button" style="padding: 0.7em; margin-top: 1em; margin-bottom: 0.5em; float: right;" value="+ Add new Person" (click)="toggleModal()"/> -->
+    <button mat-raised-button style="float: right; background: #d8d8d8;" (click)="addPerson()">+ Add Person </button>
+    <mat-form-field>
+        <mat-label>Search for Person</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. any" #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef> Phone </th>
+          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="birthday">
+          <th mat-header-cell *matHeaderCellDef> Birthday </th>
+          <td mat-cell *matCellDef="let element"> {{element.birthday|date:'mediumDate'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+          </ng-container>
+
+        <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef> Options </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-button (click)="deleteRecord(row)">Delete</button>
+              <button mat-button (click)="editRecord(row)">Edit</button>
+            </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+      
+      
+      
+      
   </div>
   <div class="wrapper" [ngStyle]="(isModalVisible)? {'visibility': 'visible'} : {'visibility': 'hidden'}"> 
       <!-- Fixed element that spans the viewport -->

@@ -4,8 +4,20 @@
     <div class="container">
         <div class="signup-content">
             <div class="signup-form">
-                <h2 class="form-title">Profile View/Edit</h2>
+                <h4 class="form-title">Profile View/Edit</h4>
                 <form [formGroup]="form" class="register-form" (submit)="onUpdate()">
+                    Profile Image:<br/>
+                    <img [src]="imageSrc" style="width: 25%;" />
+                    <div class="form-group" style="margin-top: -1em;">
+                        <label for="file">Change Profile image:</label>
+                        <input 
+                            formControlName="file"
+                            id="file" 
+                            type="file" 
+                            class="form-control"
+                            (change)="onFileChange($event)"
+                            style="margin-top: 3em;">
+                    </div>
                     <div class="form-group">
                         <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                         <input type="text" formControlName="name" id="name" placeholder="Your Name"/>
@@ -23,6 +35,12 @@
                         <button type="submit" class="form-submit">Update</button>
                     </div>
                 </form>
+
+                <div class="moreAction">
+                    <h5>More Actions:</h5>
+                    <button mat-raised-button color="primary">Change Password</button>
+                    <button mat-raised-button color="warn">Delete Accont</button>
+                </div>
             </div>
         </div>
     </div>

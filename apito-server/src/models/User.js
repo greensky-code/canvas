@@ -51,9 +51,8 @@ const UserSchema = new mongoose.Schema({
         minlength: 6,
         select: false
     },
-    profile_pic: {
-        type: String,
-        required: false
+    fileSource: {
+        type: String
     },
     birthday: {
         type: Date,

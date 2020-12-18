@@ -483,4 +483,10 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
       margin-bottom: 10px; } }
   
   /*# sourceMappingURL=style.css.map */
-  
+  .moreAction{
+      padding: 1em;
+      margin-top: 1em;
+  }
+  .moreAction button{
+    margin: 1em;
+  }
