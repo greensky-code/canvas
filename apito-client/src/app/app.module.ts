@@ -30,6 +30,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -41,6 +42,7 @@ import { SubmenuComponent } from './submenu/submenu.component';
 import { PersonAddEditComponent } from './dialog/person-add-edit/person-add-edit.component';
 import { CompanyAddEditComponent } from './dialog/company-add-edit/company-add-edit.component';
 import { ChangePasswordComponent } from './dialog/change-password/change-password.component';
+import { ConfirmBoxComponent } from './dialog/confirm-box/confirm-box.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { ChangePasswordComponent } from './dialog/change-password/change-passwor
     SubmenuComponent,
     PersonAddEditComponent,
     CompanyAddEditComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ConfirmBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +81,7 @@ import { ChangePasswordComponent } from './dialog/change-password/change-passwor
     MatTableModule,
     MatDatepickerModule,
     MatButtonModule,
+    MatCardModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

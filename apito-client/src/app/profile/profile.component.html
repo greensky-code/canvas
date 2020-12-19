@@ -1,47 +1,47 @@
 <app-submenu></app-submenu>
 
-<section class="signup">
+<section>
     <div class="container">
-        <div class="signup-content">
-            <div class="signup-form">
-                <h4 class="form-title">Profile View/Edit</h4>
+        <mat-card>
+            <mat-card-header>
+                <h4>Profile View/Edit</h4>
+            </mat-card-header>
+            <mat-card-content>
                 <form [formGroup]="form" class="register-form" (submit)="onUpdate()">
-                    Profile Image:<br/>
-                    <img [src]="imageSrc" style="width: 25%;" />
-                    <div class="form-group" style="margin-top: -1em;">
-                        <label for="file">Change Profile image:</label>
+                    <div class="profile_pic">
+                        <img [src]="!imageSrc? 'assets/images/profile-icon.png': imageSrc" style="width:100px;"/>
+                    </div>
+                    <div>
                         <input 
                             formControlName="file"
                             id="file" 
                             type="file" 
-                            class="form-control"
-                            (change)="onFileChange($event)"
-                            style="margin-top: 3em;">
+                            (change)="onFileChange($event)" />
                     </div>
-                    <div class="form-group">
-                        <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                        <input type="text" formControlName="name" id="name" placeholder="Your Name"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="email"><i class="zmdi zmdi-email"></i></label>
-                        <input type="email" formControlName="email" id="email" placeholder="Your Email"/>
-                    </div>
-                    <div class="form-group" style="margin-top: -1em;">
-                        <label for="birthday"><i class="zmdi zmdi-date"></i>Birthday:</label>
-                        <input type="date" style="margin-top: 3em;" formControlName="birthday" id="birthday" placeholder="Birthday"/>
-                    </div>
-                      <br/>
+                    <br/>
+                    <mat-form-field class="field-width">
+                        <mat-label>Name</mat-label>
+                        <input type="text" matInput formControlName="name" id="name" placeholder="Your Name"/>
+                    </mat-form-field>
+                    <mat-form-field class="field-width">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="email" id="email" placeholder="Your Email" readonly/>
+                    </mat-form-field>
+                    <mat-form-field class="field-width">
+                        <mat-label>Birthday</mat-label>
+                        <input type="date" matInput formControlName="birthday" id="birthday" placeholder="Birthday"/>
+                    </mat-form-field>
+                        <br/>
                     <div class="form-group form-button">
-                        <button type="submit" class="form-submit">Update</button>
+                        <button mat-raised-button type="submit" class="form-submit">Update</button>
                     </div>
                 </form>
-
-                <div class="moreAction">
-                    <h5>More Actions:</h5>
-                    <button mat-raised-button color="primary" (click)="changePassword()">Change Password</button>
-                    <button mat-raised-button color="warn">Delete Accont</button>
-                </div>
-            </div>
-        </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <h5>More Actions:</h5>
+                <button mat-raised-button color="primary" (click)="changePassword()">Change Password</button>
+                <button mat-raised-button color="warn">Delete Accont</button>
+            </mat-card-actions>
+        </mat-card>
     </div>
 </section>

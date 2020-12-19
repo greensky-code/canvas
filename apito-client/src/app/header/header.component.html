@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <span class="d-flex" *ngIf="isAuth">
-    <img src="assets/images/profile-icon.png" width="40" alt="">
+    <img [src]="!imageSrc ? 'assets/images/profile-icon.png' : imageSrc" width="32" alt="">
     <a href=""><h4 class="mt-1 pl-1" style="color: rgba(0,0,0,.5);">{{'nav.Welcome' | translate}} <span
         style="color: #6dabe4; font-size: 20px;">{{user?.name}}</span></h4></a>
   </span>

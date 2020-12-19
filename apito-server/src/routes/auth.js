@@ -1,5 +1,22 @@
 const express = require('express');
-const {register, login, loggedInUser, forgotPassword, resetPassword, updateDetails, updatePassword, logout, addPerson, getPerson, updatePerson} = require('../controller/auth');
+const {
+    register, 
+    login, 
+    loggedInUser, 
+    forgotPassword, 
+    resetPassword, 
+    updateDetails, 
+    updatePassword, 
+    logout, 
+    addPerson, 
+    getPerson, 
+    updatePerson, 
+    deletePerson,
+    addCompany,
+    getCompany,
+    updateCompany,
+    deleteCompany
+} = require('../controller/auth');
 const { protect } = require('../middleware/auth');
 const router = express.Router() 
 
@@ -29,6 +46,22 @@ router
 
 router
     .put('/updatePerson', updatePerson)
+
+router
+    .delete('/deletePerson/:person_id', deletePerson)
+
+
+router
+    .post('/addCompany', addCompany)
+
+router
+    .get('/getCompany/:user_id', getCompany)
+
+router
+    .put('/updateCompany', updateCompany)
+
+router
+    .delete('/deleteCompany/:company_id', deleteCompany)
 
 
 module.exports = router;

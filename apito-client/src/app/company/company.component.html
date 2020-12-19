@@ -1,64 +1,41 @@
 <app-submenu></app-submenu>
-<div id="Company" class="tabcontent">
-    <h3>Company</h3>
-    <p>View/Edit Company List</p>
-    <input type="button" style="padding: 0.7em; margin-top: 1em; margin-bottom: 0.5em; float: right;" value="+ Add new Company"/>
-    <input type="text" placeholder="Search..." />
-    <table>
-        <tr>
-          <th>Company</th>
-          <th>Contact</th>
-          <th>Country</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>
-              <input type="button" placeholder="Edit" value="Edit"/>
-          </td>
-        </tr>
-        <tr>
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
-          <td>
-            <input type="button" placeholder="Edit" value="Edit"/>
-        </td>
-        </tr>
-        <tr>
-          <td>Ernst Handel</td>
-          <td>Roland Mendel</td>
-          <td>Austria</td>
-          <td>
-            <input type="button" placeholder="Edit" value="Edit"/>
-        </td>
-        </tr>
-        <tr>
-          <td>Island Trading</td>
-          <td>Helen Bennett</td>
-          <td>UK</td>
-          <td>
-            <input type="button" placeholder="Edit" value="Edit"/>
-        </td>
-        </tr>
-        <tr>
-          <td>Laughing Bacchus Winecellars</td>
-          <td>Yoshi Tannamuri</td>
-          <td>Canada</td>
-          <td>
-            <input type="button" placeholder="Edit" value="Edit"/>
-        </td>
-        </tr>
-        <tr>
-          <td>Magazzini Alimentari Riuniti</td>
-          <td>Giovanni Rovelli</td>
-          <td>Italy</td>
-          <td>
-            <input type="button" placeholder="Edit" value="Edit"/>
-        </td>
-        </tr>
-      </table>
+  <div id="Company" class="tabcontent">
+    <h4>Company List</h4>
+    <button mat-raised-button style="float: right; background: #d8d8d8;" (click)="addCompany()">+ Add Company </button>
+    <mat-form-field>
+        <mat-label>Search for Company</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. any" #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+        <!-- Position Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
       
+        <!-- Name Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+          </ng-container>
+
+        <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef> Options </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-button (click)="deleteRecord(row)">Delete</button>
+              <button mat-button (click)="editRecord(row)">Edit</button>
+            </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
   </div>

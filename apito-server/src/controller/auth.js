@@ -3,6 +3,7 @@ const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const User = require('../models/User');
 const Person = require('../models/Person');
+const Company = require('../models/Company');
 
 const register = asyncHandler(async(req,res,next)=>{
     const { name, email, password, birthday, fileSource, role} = req.body
@@ -135,7 +136,8 @@ const updatePassword = asyncHandler(async(req,res,next)=> {
     //     email: req.body.email
     // }
     let user = await User.findById(req.body.user.id).select('+password');
-    if ((await user.matchPassword(req.body.currentPassword))) {
+    console.log(await user.matchPassword(req.body.currentPassword));
+    if (! await user.matchPassword(req.body.currentPassword)) {
         return next(new ErrorResponse('Password is incorrect', 400))   
     }
     user.password = req.body.newPassword
@@ -158,6 +160,8 @@ const logout = asyncHandler(async(req,res,next)=> {
     })
 })
 
+
+//person
 const addPerson = asyncHandler(async(req,res,next)=>{
     const {user_id, name, email, address, birthday, phone} = req.body
     const person = await Person.create({
@@ -201,6 +205,66 @@ const updatePerson = asyncHandler(async(req,res,next)=> {
     })
 })
 
+const deletePerson = asyncHandler(async(req,res,next)=> {
+    const persons = await Person.deleteOne({_id: req.params.person_id});
+    res.status(200).json({
+        success: true
+    })
+})
+
+//company
+
+
+const addCompany = asyncHandler(async(req,res,next)=>{
+    const {user_id, name, email, address} = req.body
+    const company = await Company.create({
+        user_id,
+        name,
+        email,
+        address
+    })
+    res.status(200).json({
+        success: true,
+        data: company
+    })
+})
+
+const getCompany = asyncHandler(async(req,res,next)=> {
+    const company = await Company.find({"user_id.$oid": req.param.user_id})
+    res.status(200).json({
+        success: true,
+        data: company
+    })
+})
+
+const updateCompany = asyncHandler(async(req,res,next)=> {
+    const fields = {
+        name: req.body.name,
+        email: req.body.email,
+        address: req.body.address
+    }
+    const company = await Company.findByIdAndUpdate(req.body.company.id, fields, {
+        new:true,
+        runValidators: true
+    })
+    
+    res.status(200).json({
+        success: true,
+        data: company
+    })
+})
+
+const deleteCompany = asyncHandler(async(req,res,next)=> {
+    const company = await Company.deleteOne({_id: req.params.company_id});
+    res.status(200).json({
+        success: true
+    })
+})
+
+
+
+
+
 module.exports = { 
     register, 
     login, 
@@ -212,5 +276,10 @@ module.exports = {
     logout,
     addPerson,
     getPerson,
-    updatePerson
+    updatePerson,
+    deletePerson,
+    addCompany,
+    getCompany,
+    updateCompany,
+    deleteCompany
 }

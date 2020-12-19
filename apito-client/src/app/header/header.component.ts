@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
   isAuth
   user;
   lang;
+  imageSrc;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit {
     if (this.isAuth) {
       this.authService.getLoggedInUser().subscribe((res:any)=> {
         console.log(res);
-        this.user = res.data
+        this.user = res.data;
+        this.imageSrc = this.user.fileSource;
       })
       
     }

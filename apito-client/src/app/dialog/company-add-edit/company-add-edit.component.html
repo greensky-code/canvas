@@ -1,1 +1,26 @@
-<p>company-add-edit works!</p>
+
+<section flex-container fxLayout="column" fxLayoutAlign="space-around center">
+    <div mat-dialog-title>
+        Company Details
+    </div>
+    <div mat-dialog-content class="example-container">
+        <form [formGroup]="form" (submit)="actionRelated()">
+            <mat-form-field class="example-full-width">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="name" id="name" placeholder="Company Name">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" id="email" placeholder="Company Email"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Address</mat-label>
+                <textarea matInput formControlName="address" id="address" placeholder="Address"></textarea>
+            </mat-form-field>
+            <div class="form-group form-button">
+                <button type="submit" mat-raised-button color="primary" class="form-submit" style="float: left; text-transform: capitalize;">Save</button>
+                <button type="button" mat-raised-button  class="form-submit" style="float: right;" (click)="dialogRef.close(true)">Cancel</button>
+            </div>
+        </form>
+    </div>
+</section>

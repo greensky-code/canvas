@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PersonAddEditComponent } from '../dialog/person-add-edit/person-add-edit.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { ConfirmBoxComponent } from '../dialog/confirm-box/confirm-box.component';
 
 
 @Component({
@@ -22,7 +23,6 @@ export class PersonComponent implements OnInit {
     'options'
   ];
   dataSource: any;
-  isModalVisible: Boolean = false;
   isAuth
   form: FormGroup;
   user;
@@ -30,6 +30,7 @@ export class PersonComponent implements OnInit {
   persons;
 
   private personAddEditComponent = PersonAddEditComponent;
+  private confirmBoxComponent = ConfirmBoxComponent
 
   constructor(
     private authService: AuthService,
@@ -45,19 +46,6 @@ export class PersonComponent implements OnInit {
       this.getPersons();
     })
     
-    this.form = new FormGroup({
-      email: new FormControl('', { validators: [Validators.required, Validators.minLength(3)] }),
-      name: new FormControl('', { validators: [Validators.required, Validators.minLength(3)] }),
-      birthday: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
-      address: new FormControl('', { validators: [Validators.required, Validators.minLength(5)] }),
-      phone: new FormControl('', { validators: [Validators.required, Validators.minLength(10)] })
-    });
-
-    
-  }
-
-  toggleModal(){
-    this.isModalVisible = !this.isModalVisible;
   }
 
   getPersons(){
@@ -80,14 +68,16 @@ export class PersonComponent implements OnInit {
     });
   }
 
-  deleteRecord(recordId) {
-
-  }
-
-  
-  public editRecord(record) {
+  editRecord(record) {
     record.mode = 'edit';
     this.dialog.open(this.personAddEditComponent, {
+      data: record
+    });
+  }
+
+  deleteRecord(record){
+    record.from = 'person';
+    this.dialog.open(this.confirmBoxComponent, {
       data: record
     });
   }
