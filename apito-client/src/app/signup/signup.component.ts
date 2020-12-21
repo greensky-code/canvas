@@ -23,10 +23,6 @@ export class SignupComponent implements OnInit {
     })
   }
 
-  get f(){
-    return this.form.controls;
-  }
-
   onFileChange(event) {
     const reader = new FileReader();
     

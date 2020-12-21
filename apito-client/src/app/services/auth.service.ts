@@ -99,6 +99,17 @@ export class AuthService {
     })
   }
 
+  deactivateUser(data) {
+    this.http.put(`${this.authUrl}deactivate`, data).subscribe(res => {
+      this.toastr.success("Account Deleted.")
+      let that = this;
+      setTimeout(()=>{
+        that.clearAuthData();
+      },1000)
+      
+    })
+  }
+
   //person
 
   addPerson(form){
@@ -167,5 +178,7 @@ deleteCompany(id) {
     },1000)
   });
 }
+
+
 
 }

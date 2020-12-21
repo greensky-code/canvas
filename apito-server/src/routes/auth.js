@@ -7,7 +7,8 @@ const {
     resetPassword, 
     updateDetails, 
     updatePassword, 
-    logout, 
+    logout,
+    deactivateUser, 
     addPerson, 
     getPerson, 
     updatePerson, 
@@ -63,5 +64,7 @@ router
 router
     .delete('/deleteCompany/:company_id', deleteCompany)
 
+router
+    .put('/deactivate', deactivateUser)
 
 module.exports = router;

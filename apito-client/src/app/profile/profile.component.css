@@ -1,3 +1,16 @@
 .field-width{
       width: 100%;
   }
+
+.profile_pic{
+    margin-bottom: 2em;
+}
+
+.profile_pic img{
+    width: 120px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.profile_pic img:hover {
+    border: 1px solid rgb(161, 161, 255)
+}

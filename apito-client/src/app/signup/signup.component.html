@@ -5,6 +5,21 @@
             <div class="signup-form">
                 <h2 class="form-title">{{'sign.Sign' | translate}}</h2>
                 <form [formGroup]="form" class="register-form" (submit)="onSignUp()">
+                    <input 
+                        formControlName="file"
+                        id="file" 
+                        type="file" 
+                        class="form-control"
+                        (change)="onFileChange($event)"
+                        style="display: none;"
+                        #file
+                    />
+                    <div class="profile_pic">
+                        <img [src]="!imageSrc? 'assets/images/profile-icon.png': imageSrc">    
+                    </div>
+                    <div style="margin-bottom: 1.5em; margin-top: 10px;">
+                        <button mat-raised-button type="button" (click)="file.click()" >Upload Profile Pic (optional)</button>
+                    </div>
                     <div class="form-group">
                         <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                         <input type="text" formControlName="name" id="name" placeholder="Your Name"/>
@@ -17,25 +32,9 @@
                         <label for="pass"><i class="zmdi zmdi-lock"></i></label>
                         <input type="password" formControlName="password" id="pass" placeholder="Password"/>
                     </div>
-                    <div class="form-group" style="margin-top: -1em;">
-                        <label for="birthday"><i class="zmdi zmdi-date"></i>Birthday:</label>
-                        <input type="date" style="margin-top: 3em;" formControlName="birthday" id="birthday" placeholder="Birthday"/>
+                    <div class="form-group">
+                        <input type="text" onfocus="(this.type='date')" formControlName="birthday" id="birthday" placeholder="Birthday (MM/DD/YYYYY)"/>
                     </div>
-                    
-                    <div class="form-group" style="margin-top: -1em;">
-                        <label for="file">Avatar(optional):</label>
-                        <input 
-                            formControlName="file"
-                            id="file" 
-                            type="file" 
-                            class="form-control"
-                            (change)="onFileChange($event)"
-                            style="margin-top: 3em;">
-                        <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
-                            <div *ngIf="f.file.errors.required">File is required.</div>
-                        </div>
-                    </div>
-                    <img [src]="imageSrc" *ngIf="imageSrc" style="width: 35%;">
                       <br/>
                     <!-- <div class="form-group">
                         <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>

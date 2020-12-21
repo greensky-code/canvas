@@ -45,6 +45,10 @@ const UserSchema = new mongoose.Schema({
         enum: ['user', 'publisher'],
         default: 'user'
     },
+    active: {
+        type: Boolean,
+        default: true
+    },
     password: {
         type: String,
         required: [true, "Add a password"],

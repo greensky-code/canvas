@@ -4,17 +4,41 @@ const asyncHandler = require('../middleware/async');
 const User = require('../models/User');
 const Person = require('../models/Person');
 const Company = require('../models/Company');
+const cloudinary = require('cloudinary').v2
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+});
 
 const register = asyncHandler(async(req,res,next)=>{
     const { name, email, password, birthday, fileSource, role} = req.body
-    const user = await User.create({
-        name,
-        email,
-        password,
-        birthday,
-        fileSource,
-        role
-    })
+    let newFile = "";
+    let user;
+    if(fileSource) {
+        newFile = await cloudinary.uploader.upload(fileSource);
+        console.log(newFile);
+        user = await User.create({
+            name,
+            email,
+            password,
+            birthday,
+            fileSource: newFile.url,
+            public_id: newFile.public_id,
+            role
+        })
+    } else {
+        user = await User.create({
+            name,
+            email,
+            password,
+            birthday,
+            fileSource,
+            role
+        })
+    }
+    
     sendTokenResponse(user, 200,res)
 })
 
@@ -30,6 +54,10 @@ const login = asyncHandler(async(req,res,next)=>{
     const isMatch = await user.matchPassword(password)
     if (!isMatch) {
         return next(new ErrorResponse('Invalid credentials', 400))
+    }
+    const isActive = await User.findOne({email}).select('active')
+    if(!isActive.active) {
+        return next(new ErrorResponse('Account with this Email-id is De-activated. Contact ADMIN for re-activation', 400))
     }
     sendTokenResponse(user, 200,res)
 })
@@ -109,11 +137,25 @@ const resetPassword = asyncHandler(async(req,res,next)=> {
 //@access Private
 
 const updateDetails = asyncHandler(async(req,res,next)=> {
-    const fields = {
-        name: req.body.name,
-        email: req.body.email,
-        fileSource: req.body.fileSource,
-        birthday: req.body.birthday
+    const {name, email, fileSource, birthday} = req.body
+    let fields;
+    if(fileSource.startsWith("http")) {
+        fields = {
+            name,
+            email,
+            fileSource,
+            birthday
+        }
+    } else {
+        //with new image
+        let newFile = await cloudinary.uploader.upload(fileSource);
+        fields = {
+            name,
+            email,
+            fileSource: newFile.url,
+            public_id: newFile.public_id,
+            birthday
+        }
     }
     const user = await User.findByIdAndUpdate(req.body.user.id, fields, {
         new:true,
@@ -160,6 +202,20 @@ const logout = asyncHandler(async(req,res,next)=> {
     })
 })
 
+const deactivateUser = asyncHandler(async(req,res,next)=> {
+    const fields = {
+        active: false
+    }
+    const user = await User.findByIdAndUpdate(req.body.id, fields, {
+        new:true,
+        runValidators: true
+    })
+    
+    res.status(200).json({
+        success: true,
+        data: user
+    })
+})
 
 //person
 const addPerson = asyncHandler(async(req,res,next)=>{
@@ -272,7 +328,8 @@ module.exports = {
     forgotPassword, 
     resetPassword, 
     updateDetails, 
-    updatePassword, 
+    updatePassword,
+    deactivateUser, 
     logout,
     addPerson,
     getPerson,

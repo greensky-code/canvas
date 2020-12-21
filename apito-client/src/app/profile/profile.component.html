@@ -3,22 +3,23 @@
 <section>
     <div class="container">
         <mat-card>
-            <mat-card-header>
-                <h4>Profile View/Edit</h4>
-            </mat-card-header>
+            <h4>Profile View/Edit</h4>
             <mat-card-content>
                 <form [formGroup]="form" class="register-form" (submit)="onUpdate()">
                     <div class="profile_pic">
-                        <img [src]="!imageSrc? 'assets/images/profile-icon.png': imageSrc" style="width:100px;"/>
-                    </div>
-                    <div>
+                        <img 
+                            (click)="file.click()" 
+                            [src]="!imageSrc? 'assets/images/profile-icon.png': imageSrc" 
+                            title="Click to change/upload profile image"/>
                         <input 
                             formControlName="file"
                             id="file" 
                             type="file" 
-                            (change)="onFileChange($event)" />
+                            (change)="onFileChange($event)" 
+                            style="display: none;"
+                            #file
+                        />
                     </div>
-                    <br/>
                     <mat-form-field class="field-width">
                         <mat-label>Name</mat-label>
                         <input type="text" matInput formControlName="name" id="name" placeholder="Your Name"/>
@@ -40,8 +41,21 @@
             <mat-card-actions>
                 <h5>More Actions:</h5>
                 <button mat-raised-button color="primary" (click)="changePassword()">Change Password</button>
-                <button mat-raised-button color="warn">Delete Accont</button>
+                <button mat-raised-button color="warn" (click)="openDialog(deleteAccountTemplate)">Delete Accont</button>
             </mat-card-actions>
         </mat-card>
     </div>
+    <ng-template #deleteAccountTemplate style="width:40%;">
+        <div>
+            <h2 matDialogTitle>Delete my account</h2>
+            <mat-dialog-content>
+                <p>Are you sure you want to <code>Delete</code>! your account?</p>
+            </mat-dialog-content>
+            
+            <mat-dialog-actions align="left">
+            <button mat-raised-button color="warn" (click)="deleteAccount()">Confirm</button>
+            <button mat-raised-button matDialogClose color="primary">Cancel</button>
+            </mat-dialog-actions>
+        </div>
+    </ng-template>
 </section>

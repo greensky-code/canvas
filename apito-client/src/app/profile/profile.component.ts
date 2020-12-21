@@ -86,12 +86,24 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  public changePassword() {
+  changePassword() {
 
     this.dialog.open(this.changePasswordComponent, {
       data: {
         user: this.user
       }
     });
+  }
+
+  openDialog(templateRef) {
+    let dialogRef = this.dialog.open(templateRef, {
+     width: '300px'
+   });
+  }
+
+  deleteAccount() {
+    this.authService.deactivateUser({
+      id: this.user._id
+    });   
   }
 }
