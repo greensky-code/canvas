@@ -13,6 +13,20 @@ export class PersonAddEditComponent implements OnInit {
   isAuth;
   user;
   form: FormGroup;
+  personTypes = [
+    {
+      viewValue: 'Business Partner',
+      value: 'business_partner'
+    },
+    {
+      viewValue: 'Friends',
+      value: 'friends'
+    },
+    {
+      viewValue: 'Family',
+      value: 'family'
+    }
+  ]
   constructor(
     private authService: AuthService,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -28,6 +42,7 @@ export class PersonAddEditComponent implements OnInit {
     this.form = new FormGroup({
       email: new FormControl('', { validators: [Validators.required, Validators.minLength(3)] }),
       name: new FormControl('', { validators: [Validators.required, Validators.minLength(3)] }),
+      type: new FormControl('', { validators: [Validators.required] }),
       birthday: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
       address: new FormControl('', { validators: [Validators.required, Validators.minLength(5)] }),
       phone: new FormControl('', { validators: [Validators.required, Validators.minLength(10)] })
@@ -46,6 +61,7 @@ export class PersonAddEditComponent implements OnInit {
       this.form.patchValue({
         email: this.data.email,
         name: this.data.name,
+        type: this.data.type,
         birthday: this.formatDate(new Date(this.data.birthday)),
         address: this.data.address,
         phone: this.data.phone

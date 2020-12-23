@@ -1,8 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <span class="d-flex" *ngIf="isAuth">
-    <img [src]="!imageSrc ? 'assets/images/profile-icon.png' : imageSrc" width="32" alt="">
-    <a href=""><h4 class="mt-1 pl-1" style="color: rgba(0,0,0,.5);">{{'nav.Welcome' | translate}} <span
-        style="color: #6dabe4; font-size: 20px;">{{user?.name}}</span></h4></a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="max-height: 4em;">
+  <span class="d-flex left-header" *ngIf="isAuth">
+    <img class="profile_pic" [src]="!imageSrc ? 'assets/images/profile-icon.png' : imageSrc" alt="">
+    <a href="">
+      <h4 class="mt-1 pl-1" style="color: rgba(0,0,0,.5);">{{'nav.Welcome' | translate}} 
+        <span>{{user?.name}}</span>
+      </h4>
+    </a>
   </span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
     aria-expanded="false" aria-label="Toggle navigation">

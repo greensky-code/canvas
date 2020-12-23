@@ -14,6 +14,14 @@
                 <input type="email" matInput formControlName="email" id="email" placeholder="Person Email"/>
             </mat-form-field>
             <mat-form-field class="example-full-width">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="type" id="type">
+                    <mat-option *ngFor="let type of personTypes" [value]="type.value">
+                        {{type.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
                 <mat-label>Phone</mat-label>
                 <input type="tel" matInput formControlName="phone" id="phone" placeholder="Person Phone"/>
             </mat-form-field>

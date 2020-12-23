@@ -31,7 +31,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-
+import { MatSelectModule} from '@angular/material/select'
 
 
 import { environment } from '../environments/environment';
@@ -82,6 +82,7 @@ import { ConfirmBoxComponent } from './dialog/confirm-box/confirm-box.component'
     MatDatepickerModule,
     MatButtonModule,
     MatCardModule,
+    MatSelectModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

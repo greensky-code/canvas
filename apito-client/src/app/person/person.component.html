@@ -22,6 +22,12 @@
           <th mat-header-cell *matHeaderCellDef> Email </th>
           <td mat-cell *matCellDef="let element"> {{element.email}} </td>
         </ng-container>
+
+        <!-- Type Column -->
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let element"> {{personTypeTxt[element.type]}} </td>
+          </ng-container>
       
         <!-- Weight Column -->
         <ng-container matColumnDef="phone">

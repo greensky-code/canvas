@@ -17,6 +17,7 @@ export class PersonComponent implements OnInit {
   displayedColumns: string[] = [
     'name', 
     'email', 
+    'type',
     'phone', 
     'birthday',
     'address',
@@ -28,6 +29,11 @@ export class PersonComponent implements OnInit {
   user;
   lang;
   persons;
+  personTypeTxt = {
+    'business_partner': 'Business Partner',
+    'friends':'Friends',
+    'family': 'Family'
+  }
 
   private personAddEditComponent = PersonAddEditComponent;
   private confirmBoxComponent = ConfirmBoxComponent

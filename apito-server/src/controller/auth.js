@@ -219,11 +219,12 @@ const deactivateUser = asyncHandler(async(req,res,next)=> {
 
 //person
 const addPerson = asyncHandler(async(req,res,next)=>{
-    const {user_id, name, email, address, birthday, phone} = req.body
+    const {user_id, name, email, type, address, birthday, phone} = req.body
     const person = await Person.create({
         user_id,
         name,
         email,
+        type,
         address,
         birthday,
         phone
@@ -235,7 +236,7 @@ const addPerson = asyncHandler(async(req,res,next)=>{
 })
 
 const getPerson = asyncHandler(async(req,res,next)=> {
-    const persons = await Person.find({"user_id.$oid": req.param.user_id})
+    const persons = await Person.find({"user_id": req.params.user_id})
     res.status(200).json({
         success: true,
         data: persons
@@ -246,6 +247,7 @@ const updatePerson = asyncHandler(async(req,res,next)=> {
     const fields = {
         name: req.body.name,
         email: req.body.email,
+        type: req.body.type,
         phone: req.body.phone,
         birthday: req.body.birthday,
         address: req.body.address
