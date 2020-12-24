@@ -484,3 +484,8 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
   
   /*# sourceMappingURL=style.css.map */
   
+
+  .profile_pic img{
+    width: 40%;
+    border-radius: 50%;
+  }

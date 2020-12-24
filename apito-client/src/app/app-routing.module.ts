@@ -7,6 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './services/auth-guard'
 import { LandingComponent } from './landing/landing.component';
 import { DesignComponent } from './design/design.component';
+import { ProfileComponent } from './profile/profile.component'
+import { PersonComponent } from './person/person.component';
+import { CompanyComponent } from './company/company.component';
 
 
 const routes: Routes = [
@@ -14,6 +17,9 @@ const routes: Routes = [
   // {path: 'studio/:id', component: StudioComponent, canActivate: [AuthGuard]},
   {path: 'design/:image/:id/:name', component: DesignComponent, canActivate: [AuthGuard]},
   {path: 'design/:id', component: DesignComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'person', component: PersonComponent, canActivate: [AuthGuard]},
+  {path: 'company', component: CompanyComponent, canActivate: [AuthGuard]},
   {path: 'sign', component: SignupComponent},
   // {path: 'design', component: DesignComponent},
   {path: 'login', component: LoginComponent},

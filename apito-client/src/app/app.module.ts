@@ -26,10 +26,23 @@ import { DesignComponent } from './design/design.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule} from '@angular/material/select'
 
 
 import { environment } from '../environments/environment';
+import { ProfileComponent } from './profile/profile.component';
+import { PersonComponent } from './person/person.component';
+import { CompanyComponent } from './company/company.component';
+import { SubmenuComponent } from './submenu/submenu.component';
+import { PersonAddEditComponent } from './dialog/person-add-edit/person-add-edit.component';
+import { CompanyAddEditComponent } from './dialog/company-add-edit/company-add-edit.component';
+import { ChangePasswordComponent } from './dialog/change-password/change-password.component';
+import { ConfirmBoxComponent } from './dialog/confirm-box/confirm-box.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +55,15 @@ import { environment } from '../environments/environment';
     AddUserComponent,
     LandingComponent,
     HeaderComponent,
-    DesignComponent
+    DesignComponent,
+    ProfileComponent,
+    PersonComponent,
+    CompanyComponent,
+    SubmenuComponent,
+    PersonAddEditComponent,
+    CompanyAddEditComponent,
+    ChangePasswordComponent,
+    ConfirmBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +78,11 @@ import { environment } from '../environments/environment';
     MatSliderModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatCardModule,
+    MatSelectModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

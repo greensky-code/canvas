@@ -31,7 +31,17 @@ export class AuthService {
       this.toastr.success("User Created Succesfully")
       this.router.navigate(["/login"])
     })
-
+  }
+  updateProfile(form) {
+    const data = form
+    console.log(data);
+    this.http.put(`${this.authUrl}update`, data).subscribe(res => {
+      this.toastr.success("User Updated Succesfully")
+      this.router.navigate(["/profile"])
+      setTimeout(()=>{
+        window.location.reload();
+      },1000)
+    })
   }
   login(form, url) {
     console.log(url);
@@ -76,5 +86,99 @@ export class AuthService {
   getLoggedInUser(){
     return this.http.get(`${this.authUrl}user`)
   }
+
+  updatePassword(form) {
+    const data = form
+    console.log(data);
+    this.http.put(`${this.authUrl}password`, data).subscribe(res => {
+      this.toastr.success("Password updated Succesfully")
+      this.router.navigate(["/profile"])
+      setTimeout(()=>{
+        window.location.reload();
+      },1000)
+    })
+  }
+
+  deactivateUser(data) {
+    this.http.put(`${this.authUrl}deactivate`, data).subscribe(res => {
+      this.toastr.success("Account Deleted.")
+      let that = this;
+      setTimeout(()=>{
+        that.clearAuthData();
+      },1000)
+      
+    })
+  }
+
+  //person
+
+  addPerson(form){
+    const data = form
+    console.log(data);
+    data.user_id = 
+    this.http.post(`${this.authUrl}addPerson`, data).subscribe(res => {
+      this.toastr.success("Person added Succesfully")
+      //this.router.navigate(["/person"])
+    })
+  }
+
+  getPerson(id) {
+    return this.http.get(`${this.authUrl}getPerson/${id}`)
+  }
+
+  updatePerson(form) {
+    const data = form
+    console.log(data);
+    this.http.put(`${this.authUrl}updatePerson`, data).subscribe(res => {
+      this.toastr.success("Person Details Updated Succesfully")
+      this.router.navigate(["/person"])
+    })
+  }
+
+  deletePerson(id) {
+    this.http.delete(`${this.authUrl}deletePerson/${id}`).subscribe(res => {
+      this.toastr.success("Deleted Succesfully")
+      this.router.navigate(["/person"])
+      setTimeout(()=>{
+        window.location.reload();
+      },1000)
+    });
+  }
+//company
+
+addCompany(form){
+  const data = form
+  console.log(data);
+  data.user_id = 
+  this.http.post(`${this.authUrl}addCompany`, data).subscribe(res => {
+    this.toastr.success("Company added Succesfully")
+    //this.router.navigate(["/person"])
+  })
+}
+
+getCompany(id) {
+  return this.http.get(`${this.authUrl}getCompany/${id}`)
+}
+
+updateCompany(form) {
+  const data = form
+  console.log(data);
+  this.http.put(`${this.authUrl}updateCompany`, data).subscribe(res => {
+    this.toastr.success("Company Details Updated Succesfully")
+    this.router.navigate(["/company"])
+  })
+}
+
+deleteCompany(id) {
+  this.http.delete(`${this.authUrl}deleteCompany/${id}`).subscribe(res => {
+    this.toastr.success("Deleted Succesfully")
+    this.router.navigate(["/company"])
+    setTimeout(()=>{
+      window.location.reload();
+    },1000)
+  });
+}
+
+
 
 }

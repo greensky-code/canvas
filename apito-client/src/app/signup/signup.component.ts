@@ -9,15 +9,40 @@ import { AuthService } from '../services/auth.service'
 })
 export class SignupComponent implements OnInit {
   form: FormGroup;
+  imageSrc: string;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
       email: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
       name: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
-      password: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] })
+      password: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
+      birthday: new FormControl(null, { validators: [Validators.required, Validators.minLength(1)] }),
+      file: new FormControl(''),
+      fileSource: new FormControl('')
     })
   }
+
+  onFileChange(event) {
+    const reader = new FileReader();
+    
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+    
+      reader.onload = () => {
+   
+        this.imageSrc = reader.result as string;
+     
+        this.form.patchValue({
+          fileSource: reader.result
+        });
+   
+      };
+   
+    }
+  }
+
   onSignUp() {
     if (this.form.invalid) {
       return;
