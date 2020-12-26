@@ -147,16 +147,26 @@ const updateDetails = asyncHandler(async(req,res,next)=> {
             birthday
         }
     } else {
-        //with new image
-        let newFile = await cloudinary.uploader.upload(fileSource);
-        fields = {
-            name,
-            email,
-            fileSource: newFile.url,
-            public_id: newFile.public_id,
-            birthday
+        if(fileSource.length == 0) {
+            fields = {
+                name,
+                email,
+                birthday
+            }
+        } else {
+            //with new image
+            let newFile = await cloudinary.uploader.upload(fileSource);
+            fields = {
+                name,
+                email,
+                fileSource: newFile.url,
+                public_id: newFile.public_id,
+                birthday
+            }
         }
+        
     }
+    console.log(fields);
     const user = await User.findByIdAndUpdate(req.body.user.id, fields, {
         new:true,
         runValidators: true
@@ -288,7 +298,7 @@ const addCompany = asyncHandler(async(req,res,next)=>{
 })
 
 const getCompany = asyncHandler(async(req,res,next)=> {
-    const company = await Company.find({"user_id.$oid": req.param.user_id})
+    const company = await Company.find({"user_id": req.params.user_id})
     res.status(200).json({
         success: true,
         data: company

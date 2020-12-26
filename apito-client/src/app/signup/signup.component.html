@@ -33,7 +33,7 @@
                         <input type="password" formControlName="password" id="pass" placeholder="Password"/>
                     </div>
                     <div class="form-group">
-                        <input type="text" onfocus="(this.type='date')" formControlName="birthday" id="birthday" placeholder="Birthday (MM/DD/YYYYY)"/>
+                        <input type="text" (focus)="handleDate()" formControlName="birthday" id="birthday" placeholder="Birthday (MM/DD/YYYYY)"/>
                     </div>
                       <br/>
                     <!-- <div class="form-group">
