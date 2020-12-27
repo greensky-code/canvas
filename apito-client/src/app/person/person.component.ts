@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { timestamp } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { PersonService } from '../services/person.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PersonAddEditComponent } from '../dialog/person-add-edit/person-add-edit.component';
 import { MatTableDataSource } from '@angular/material/table';
@@ -40,6 +41,7 @@ export class PersonComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private personService: PersonService,
     public dialog: MatDialog
     ) { }
 
@@ -55,7 +57,7 @@ export class PersonComponent implements OnInit {
   }
 
   getPersons(){
-    this.authService.getPerson(this.user._id).subscribe((res:any)=> {
+    this.personService.getPerson(this.user._id).subscribe((res:any)=> {
       console.log(res);
       this.dataSource = new MatTableDataSource(res.data);
     });

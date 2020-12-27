@@ -2,8 +2,6 @@ const crypto = require('crypto');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const User = require('../models/User');
-const Person = require('../models/Person');
-const Company = require('../models/Company');
 const cloudinary = require('cloudinary').v2
 
 cloudinary.config({
@@ -147,16 +145,26 @@ const updateDetails = asyncHandler(async(req,res,next)=> {
             birthday
         }
     } else {
-        //with new image
-        let newFile = await cloudinary.uploader.upload(fileSource);
-        fields = {
-            name,
-            email,
-            fileSource: newFile.url,
-            public_id: newFile.public_id,
-            birthday
+        if(fileSource.length == 0) {
+            fields = {
+                name,
+                email,
+                birthday
+            }
+        } else {
+            //with new image
+            let newFile = await cloudinary.uploader.upload(fileSource);
+            fields = {
+                name,
+                email,
+                fileSource: newFile.url,
+                public_id: newFile.public_id,
+                birthday
+            }
         }
+        
     }
+    console.log(fields);
     const user = await User.findByIdAndUpdate(req.body.user.id, fields, {
         new:true,
         runValidators: true
@@ -217,111 +225,6 @@ const deactivateUser = asyncHandler(async(req,res,next)=> {
     })
 })
 
-//person
-const addPerson = asyncHandler(async(req,res,next)=>{
-    const {user_id, name, email, type, address, birthday, phone} = req.body
-    const person = await Person.create({
-        user_id,
-        name,
-        email,
-        type,
-        address,
-        birthday,
-        phone
-    })
-    res.status(200).json({
-        success: true,
-        data: person
-    })
-})
-
-const getPerson = asyncHandler(async(req,res,next)=> {
-    const persons = await Person.find({"user_id": req.params.user_id})
-    res.status(200).json({
-        success: true,
-        data: persons
-    })
-})
-
-const updatePerson = asyncHandler(async(req,res,next)=> {
-    const fields = {
-        name: req.body.name,
-        email: req.body.email,
-        type: req.body.type,
-        phone: req.body.phone,
-        birthday: req.body.birthday,
-        address: req.body.address
-    }
-    const person = await Person.findByIdAndUpdate(req.body.person.id, fields, {
-        new:true,
-        runValidators: true
-    })
-    
-    res.status(200).json({
-        success: true,
-        data: person
-    })
-})
-
-const deletePerson = asyncHandler(async(req,res,next)=> {
-    const persons = await Person.deleteOne({_id: req.params.person_id});
-    res.status(200).json({
-        success: true
-    })
-})
-
-//company
-
-
-const addCompany = asyncHandler(async(req,res,next)=>{
-    const {user_id, name, email, address} = req.body
-    const company = await Company.create({
-        user_id,
-        name,
-        email,
-        address
-    })
-    res.status(200).json({
-        success: true,
-        data: company
-    })
-})
-
-const getCompany = asyncHandler(async(req,res,next)=> {
-    const company = await Company.find({"user_id.$oid": req.param.user_id})
-    res.status(200).json({
-        success: true,
-        data: company
-    })
-})
-
-const updateCompany = asyncHandler(async(req,res,next)=> {
-    const fields = {
-        name: req.body.name,
-        email: req.body.email,
-        address: req.body.address
-    }
-    const company = await Company.findByIdAndUpdate(req.body.company.id, fields, {
-        new:true,
-        runValidators: true
-    })
-    
-    res.status(200).json({
-        success: true,
-        data: company
-    })
-})
-
-const deleteCompany = asyncHandler(async(req,res,next)=> {
-    const company = await Company.deleteOne({_id: req.params.company_id});
-    res.status(200).json({
-        success: true
-    })
-})
-
-
-
-
 
 module.exports = { 
     register, 
@@ -332,13 +235,5 @@ module.exports = {
     updateDetails, 
     updatePassword,
     deactivateUser, 
-    logout,
-    addPerson,
-    getPerson,
-    updatePerson,
-    deletePerson,
-    addCompany,
-    getCompany,
-    updateCompany,
-    deleteCompany
+    logout
 }

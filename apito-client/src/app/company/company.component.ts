@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CompanyAddEditComponent } from '../dialog/company-add-edit/company-add-edit.component';
 import { ConfirmBoxComponent } from '../dialog/confirm-box/confirm-box.component';
 import { AuthService } from '../services/auth.service';
+import { CompanyService } from '../services/company.service';
 
 @Component({
   selector: 'app-company',
@@ -26,6 +27,7 @@ export class CompanyComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private companyService: CompanyService,
     public dialog: MatDialog
   ) { }
 
@@ -41,7 +43,7 @@ export class CompanyComponent implements OnInit {
 
 
   getCompany(){
-    this.authService.getCompany(this.user._id).subscribe((res:any)=> {
+    this.companyService.getCompany(this.user._id).subscribe((res:any)=> {
       console.log(res);
       this.dataSource = new MatTableDataSource(res.data);
     });

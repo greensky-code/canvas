@@ -50,5 +50,11 @@ export class SignupComponent implements OnInit {
     this.authService.signUp(this.form.value)
   }
 
+  handleDate() {
+    let ele = document.getElementById('birthday');
+    let dt = new Date().toLocaleDateString('en-CA');;
+    ele.setAttribute("type", "date");
+    ele.setAttribute("max", dt)
+  }
 
 }
