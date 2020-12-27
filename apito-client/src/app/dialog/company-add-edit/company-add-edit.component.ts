@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
+import { CompanyService } from 'src/app/services/company.service';
 
 @Component({
   selector: 'app-company-add-edit',
@@ -15,6 +16,7 @@ export class CompanyAddEditComponent implements OnInit {
   form: FormGroup;
   constructor(
     private authService: AuthService,
+    private companyService: CompanyService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<CompanyAddEditComponent>
   ) { }
@@ -55,7 +57,7 @@ export class CompanyAddEditComponent implements OnInit {
         return;
       }
       this.form.value.user_id = this.user._id
-      this.authService.addCompany(this.form.value);
+      this.companyService.addCompany(this.form.value);
       setTimeout(()=>{
         window.location.reload();
       }, 1000)
@@ -67,7 +69,7 @@ export class CompanyAddEditComponent implements OnInit {
       this.form.value.company = {
         id: this.data._id
       }
-      this.authService.updateCompany(this.form.value);
+      this.companyService.updateCompany(this.form.value);
       setTimeout(()=>{
         window.location.reload();
       }, 1000)

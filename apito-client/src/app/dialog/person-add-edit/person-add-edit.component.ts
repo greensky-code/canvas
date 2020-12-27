@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
+import { PersonService } from 'src/app/services/person.service';
 
 @Component({
   selector: 'app-person-add-edit',
@@ -29,6 +30,7 @@ export class PersonAddEditComponent implements OnInit {
   ]
   constructor(
     private authService: AuthService,
+    private personService: PersonService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<PersonAddEditComponent>) { }
 
@@ -80,7 +82,7 @@ export class PersonAddEditComponent implements OnInit {
         return;
       }
       this.form.value.user_id = this.user._id
-      this.authService.addPerson(this.form.value);
+      this.personService.addPerson(this.form.value);
       setTimeout(()=>{
         window.location.reload();
       }, 1000)
@@ -92,7 +94,7 @@ export class PersonAddEditComponent implements OnInit {
       this.form.value.person = {
         id: this.data._id
       }
-      this.authService.updatePerson(this.form.value);
+      this.personService.updatePerson(this.form.value);
       setTimeout(()=>{
         window.location.reload();
       }, 1000)
@@ -109,4 +111,10 @@ export class PersonAddEditComponent implements OnInit {
     return [year, month, day].join('-');
   }
 
+  handleDate() {
+    let ele = document.getElementById('birthday');
+    let dt = new Date().toLocaleDateString('en-CA');;
+    ele.setAttribute("type", "date");
+    ele.setAttribute("max", dt)
+  }
 }
