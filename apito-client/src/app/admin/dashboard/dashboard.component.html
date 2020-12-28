@@ -1,0 +1,44 @@
+<div class="container">
+    <mat-grid-list cols="3" rowHeight="1:1">
+        <mat-grid-tile>
+            <mat-card style="background-color: #ffa0a0;">
+                <mat-card-title>Users List</mat-card-title>
+                <mat-card-content>
+                  <p>
+                    List of users with all details/actions
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button [routerLink]="'/admin/dashboard/users'">Show</button>
+                </mat-card-actions>
+            </mat-card>
+
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card style="background-color: #a0ffca;">
+                <mat-card-title>Companies List</mat-card-title>
+                <mat-card-content>
+                  <p>
+                    List of all Companies
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button [routerLink]="'/admin/dashboard/companies'">Show</button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card style="background-color: #ffca83;">
+                <mat-card-title>Projects List</mat-card-title>
+                <mat-card-content>
+                  <p>
+                    List of all Projects
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button [routerLink]="'/admin/dashboard/projects'">Show</button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

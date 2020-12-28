@@ -1,0 +1,44 @@
+<mat-toolbar>
+    <button mat-raised-button [routerLink]="'/admin/dashboard'" color="primary">Back to Dashboard</button>
+</mat-toolbar>
+<div id="Company" class="tabcontent">
+    <h4>Companies List</h4>
+    <mat-form-field>
+        <mat-label>Search within Company</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. any" #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Creator Name </th>
+            <td mat-cell *matCellDef="let data;let i = dataIndex" [attr.rowspan]="getRowSpan('name',i)" [style.display]="getRowSpan('name', i) ? '' : 'none'">
+             {{ data.name }} </td>
+        </ng-container>
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Creator Email </th>
+            <td mat-cell *matCellDef="let data;let i = dataIndex" [attr.rowspan]="getRowSpan('email',i)" [style.display]="getRowSpan('email', i) ? '' : 'none'">
+             {{ data.email }} </td>
+        </ng-container>
+        <!-- COMPANY Data Started -->
+        <ng-container matColumnDef="cp_name">
+            <th mat-header-cell *matHeaderCellDef> Company Name </th>
+            <td mat-cell *matCellDef="let data"> {{ data.cp_name }} </td>
+        </ng-container>
+        <ng-container matColumnDef="cp_email">
+            <th mat-header-cell *matHeaderCellDef> Company Email </th>
+            <td mat-cell *matCellDef="let data"> {{ data.cp_email }} </td>
+        </ng-container>
+        <ng-container matColumnDef="cp_createdAt">
+            <th mat-header-cell *matHeaderCellDef> Company Created At </th>
+            <td mat-cell *matCellDef="let data"> {{ data.cp_createdAt | date:'short' }} </td>
+        </ng-container>
+        <ng-container matColumnDef="cp_updatedAt">
+            <th mat-header-cell *matHeaderCellDef> Company Updated At </th>
+            <td mat-cell *matCellDef="let data"> {{ data.cp_updatedAt | date:'short' }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </div>

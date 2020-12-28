@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
   user;
   lang;
   imageSrc;
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.isAuth = this.authService.getAuth()
@@ -20,6 +21,9 @@ export class HeaderComponent implements OnInit {
         console.log(res);
         this.user = res.data;
         this.imageSrc = this.user.fileSource;
+        if(this.user.role == "admin") {
+          this.router.navigateByUrl("/admin/dashboard");
+        }
       })
       
     }

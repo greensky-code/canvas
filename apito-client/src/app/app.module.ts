@@ -31,7 +31,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatSelectModule} from '@angular/material/select'
+import { MatSelectModule} from '@angular/material/select';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 
 import { environment } from '../environments/environment';
@@ -43,6 +46,10 @@ import { PersonAddEditComponent } from './dialog/person-add-edit/person-add-edit
 import { CompanyAddEditComponent } from './dialog/company-add-edit/company-add-edit.component';
 import { ChangePasswordComponent } from './dialog/change-password/change-password.component';
 import { ConfirmBoxComponent } from './dialog/confirm-box/confirm-box.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { UsersComponent } from './admin/users/users.component';
+import { CompaniesComponent } from './admin/companies/companies.component';
+import { ProjectsComponent } from './admin/projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +70,11 @@ import { ConfirmBoxComponent } from './dialog/confirm-box/confirm-box.component'
     PersonAddEditComponent,
     CompanyAddEditComponent,
     ChangePasswordComponent,
-    ConfirmBoxComponent
+    ConfirmBoxComponent,
+    DashboardComponent,
+    UsersComponent,
+    CompaniesComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -83,6 +94,8 @@ import { ConfirmBoxComponent } from './dialog/confirm-box/confirm-box.component'
     MatButtonModule,
     MatCardModule,
     MatSelectModule,
+    MatGridListModule,
+    MatToolbarModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

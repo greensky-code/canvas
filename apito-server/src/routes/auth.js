@@ -8,7 +8,9 @@ const {
     updateDetails, 
     updatePassword, 
     logout,
-    deactivateUser
+    deactivateUser,
+    userList,
+    getProjects
 } = require('../controller/auth');
 const { protect } = require('../middleware/auth');
 const router = express.Router() 
@@ -33,5 +35,9 @@ router
 
 router
     .put('/deactivate', deactivateUser)
+router
+    .get('/userList', userList)
 
+router
+    .get('/projectList', getProjects)
 module.exports = router;
