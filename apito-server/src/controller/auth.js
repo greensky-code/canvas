@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const User = require('../models/User');
+const Canvas = require('../models/Canvas');
 const cloudinary = require('cloudinary').v2
 
 cloudinary.config({
@@ -226,6 +227,32 @@ const deactivateUser = asyncHandler(async(req,res,next)=> {
 })
 
 
+const userList = asyncHandler(async(req,res,next)=> {
+    const users = await User.find({"role": "user"})
+    res.status(200).json({
+        success: true,
+        data: users
+    })
+})
+
+const getProjects = asyncHandler(async(req,res,next)=> {
+    const users = await User.aggregate([{
+        $lookup: {
+            from: Canvas.collection.name,//mongoose 
+            localField: "_id",//field from input doc
+            foreignField: "owner",//field from the documents of the "from" collection
+            as: "projectList"
+        }
+    }]
+    ,function (error, data) {
+        return res.status(200).json({
+            success: true,
+            data: data
+        });
+    });
+    
+})
+
 module.exports = { 
     register, 
     login, 
@@ -235,5 +262,7 @@ module.exports = {
     updateDetails, 
     updatePassword,
     deactivateUser, 
+    userList,
+    getProjects,
     logout
 }

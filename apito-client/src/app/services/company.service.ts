@@ -26,6 +26,10 @@ getCompany(id) {
   return this.http.get(`${this.companyUrl}getCompany/${id}`)
 }
 
+getCompanies() {
+  return this.http.get(`${this.companyUrl}getCompanies`)
+}
+
 updateCompany(form) {
   const data = form
   console.log(data);

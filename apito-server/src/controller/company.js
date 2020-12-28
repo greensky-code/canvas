@@ -1,5 +1,7 @@
 const Company = require('../models/Company');
 const asyncHandler = require('../middleware/async');
+const User = require('../models/User');
+const Canvas = require('../models/Canvas');
 
 
 //company
@@ -25,6 +27,25 @@ const getCompany = asyncHandler(async(req,res,next)=> {
         success: true,
         data: company
     })
+})
+
+const getCompanies = asyncHandler(async(req,res,next)=> {
+
+    const users = await User.aggregate([{
+        $lookup: {
+            from: Company.collection.name,//mongoose 
+            localField: "_id",//field from input doc
+            foreignField: "user_id",//field from the documents of the "from" collection
+            as: "companyList"
+        }
+    }]
+    ,function (error, data) {
+        return res.status(200).json({
+            success: true,
+            data: data
+        });
+    });
+    
 })
 
 const updateCompany = asyncHandler(async(req,res,next)=> {
@@ -54,6 +75,7 @@ const deleteCompany = asyncHandler(async(req,res,next)=> {
 module.exports = {
     addCompany,
     getCompany,
+    getCompanies,
     updateCompany,
     deleteCompany
 }

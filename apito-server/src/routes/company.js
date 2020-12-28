@@ -4,6 +4,7 @@ const router = express.Router()
 const {
     addCompany,
     getCompany,
+    getCompanies,
     updateCompany,
     deleteCompany
 } = require('../controller/company')
@@ -13,6 +14,9 @@ router
 
 router
     .get('/getCompany/:user_id', getCompany)
+
+router
+    .get('/getCompanies', getCompanies)
 
 router
     .put('/updateCompany', updateCompany)

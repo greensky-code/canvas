@@ -48,6 +48,7 @@ export class AuthService {
     
     this.http.post(`${this.authUrl}login`, form).subscribe((res: any) => {
       const token = res.token;
+      console.log(res);
       this.token = token;
       if (token) {
         this.isAuthenticated = true;
@@ -108,5 +109,12 @@ export class AuthService {
       },1000)
       
     })
+  }
+
+  getUsers() {
+    return this.http.get(`${this.authUrl}userList`)
+  }
+  getProjects() {
+    return this.http.get(`${this.authUrl}projectList`)
   }
 }

@@ -1,0 +1,66 @@
+<mat-toolbar>
+    <button mat-raised-button [routerLink]="'/admin/dashboard'" color="primary">Back to Dashboard</button>
+</mat-toolbar>
+
+<div id="Users" class="tabcontent">
+    <h4>Users List</h4>
+    <mat-form-field>
+        <mat-label>Search within Users</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. any" #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- fileSource Column -->
+        <ng-container matColumnDef="fileSource">
+            <th mat-header-cell *matHeaderCellDef> Profile Pic </th>
+            <td mat-cell *matCellDef="let element"> 
+                <img [src]="!element.fileSource ? 'assets/images/profile-icon.png' : element.fileSource" class="profile_pic"> </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+        <!-- Birthday Column -->
+        <ng-container matColumnDef="birthday">
+          <th mat-header-cell *matHeaderCellDef> Birthday(MM/dd/yyyy) </th>
+          <td mat-cell *matCellDef="let element"> {{element.birthday|date:'MM/dd/yyyy'}} </td>
+        </ng-container>
+        <!-- Created At -->
+        <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef> Created At </th>
+            <td mat-cell *matCellDef="let element"> {{element.createdAt|date:'short'}} </td>
+        </ng-container>
+        <!-- Last Login -->
+        <ng-container matColumnDef="updatedAt">
+            <th mat-header-cell *matHeaderCellDef> Last Login </th>
+            <td mat-cell *matCellDef="let element"> {{element.updatedAt|date:'short'}} </td>
+        </ng-container>
+        <!-- active:true/false -->
+        <ng-container matColumnDef="active">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> 
+                <span [hidden]="!element.active">ACTIVE</span> 
+                <span [hidden]="element.active">DE-ACTIVATED</span>
+            </td>
+          </ng-container>
+
+        <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-button color="warn" (click)="toggleUserStatus(row)">
+                <span [hidden]="row.active">ACTIVATE</span> 
+                <span [hidden]="!row.active">DE-ACTIVATE</span>
+              </button>
+              <button mat-button (click)="resetPassword(row)" color="primary">Reset Password</button>
+            </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </div>

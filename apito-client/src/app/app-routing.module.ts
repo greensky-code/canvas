@@ -10,11 +10,21 @@ import { DesignComponent } from './design/design.component';
 import { ProfileComponent } from './profile/profile.component'
 import { PersonComponent } from './person/person.component';
 import { CompanyComponent } from './company/company.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { UsersComponent } from './admin/users/users.component';
+import { CompaniesComponent } from './admin/companies/companies.component';
+import { ProjectsComponent } from './admin/projects/projects.component';
 
 
 const routes: Routes = [
   // {path: 'studio/:image/:id/:name', component: StudioComponent, canActivate: [AuthGuard]},
   // {path: 'studio/:id', component: StudioComponent, canActivate: [AuthGuard]},
+  {path: 'admin/dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'admin/dashboard/users', component: UsersComponent, canActivate: [AuthGuard]},
+  {path: 'admin/dashboard/companies', component: CompaniesComponent, canActivate: [AuthGuard]},
+  {path: 'admin/dashboard/projects', component: ProjectsComponent, canActivate: [AuthGuard]},
+  {path: 'person', component: PersonComponent, canActivate: [AuthGuard]},
+  {path: 'company', component: CompanyComponent, canActivate: [AuthGuard]},
   {path: 'design/:image/:id/:name', component: DesignComponent, canActivate: [AuthGuard]},
   {path: 'design/:id', component: DesignComponent, canActivate: [AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
