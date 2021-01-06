@@ -47,6 +47,7 @@ export class SignupComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    this.form.value.role = "user";
     this.authService.signUp(this.form.value)
   }
 

@@ -38,4 +38,11 @@ export class UsersComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  toggleUserStatus(ele) {
+    this.authService.toogleUserStatus({
+      id: ele._id,
+      status: !ele.active
+    }); 
+  }
 }

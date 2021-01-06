@@ -1,5 +1,11 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span class="example-spacer"></span>
+        <button style="float: right;" mat-raised-button (click)="logout()" color="primary">Logout</button>
+    </mat-toolbar-row>
+</mat-toolbar>
 <div class="container">
-    <mat-grid-list cols="3" rowHeight="1:1">
+    <mat-grid-list cols="3" rowHeight="2:1">
         <mat-grid-tile>
             <mat-card style="background-color: #ffa0a0;">
                 <mat-card-title>Users List</mat-card-title>
@@ -40,5 +46,46 @@
                 </mat-card-actions>
             </mat-card>
         </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card style="background-color: #4fc8dd;">
+                <mat-card-title>Add ADMIN</mat-card-title>
+                <mat-card-content>
+                  <p>
+                    Add Admin account
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button (click)="openModal(addAdmin)">Add+</button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
     </mat-grid-list>
+
+    <ng-template #addAdmin>        
+        <section flex-container fxLayout="column" fxLayoutAlign="space-around center">
+            <div mat-dialog-title>
+                Add Admin
+            </div>
+            <div mat-dialog-content class="example-container">
+                <form [formGroup]="form" (submit)="addAdminAccount()">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Name</mat-label>
+                        <input type="text" matInput formControlName="name" id="name" placeholder="Name">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="email" id="email" placeholder=" Email"/>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Password</mat-label>
+                        <input type="password" matInput formControlName="password" id="your_pass" placeholder="Password"/>
+                    </mat-form-field>
+                    <div class="form-group form-button">
+                        <button type="submit" mat-raised-button color="primary" class="form-submit" style="float: left; text-transform: capitalize;">Save</button>
+                        <button type="button" mat-raised-button  class="form-submit" style="float: right;" (click)="dialogRef.close(true)">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+   </ng-template>
 </div>

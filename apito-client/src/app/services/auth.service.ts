@@ -24,12 +24,20 @@ export class AuthService {
     return this.isAuthenticated;
   }
   signUp(form) {
-    form["role"] = "user"
+    //form["role"] = "user"
     const data = form
     console.log(data);
     this.http.post(`${this.authUrl}register`, data).subscribe(res => {
-      this.toastr.success("User Created Succesfully")
-      this.router.navigate(["/login"])
+      if(form.role == "admin") {
+        this.toastr.success("Admin Created Succesfully")
+        setTimeout(()=>{
+          window.location.reload();
+        },1000)
+      } else {
+        this.toastr.success("User Created Succesfully")
+        this.router.navigate(["/login"])
+      }
+      
     })
   }
   updateProfile(form) {
@@ -108,6 +116,15 @@ export class AuthService {
         that.clearAuthData();
       },1000)
       
+    })
+  }
+
+  toogleUserStatus(data) {
+    this.http.put(`${this.authUrl}toogleUserStatus`, data).subscribe(res => {
+      this.toastr.success("User account status updated.");
+      setTimeout(()=>{
+        window.location.reload();
+      },1000)
     })
   }
 
