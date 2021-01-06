@@ -226,6 +226,20 @@ const deactivateUser = asyncHandler(async(req,res,next)=> {
     })
 })
 
+const toogleUserStatus = asyncHandler(async(req,res,next)=> {
+    const fields = {
+        active: req.body.status
+    }
+    const user = await User.findByIdAndUpdate(req.body.id, fields, {
+        new:true,
+        runValidators: true
+    })
+    
+    res.status(200).json({
+        success: true,
+        data: user
+    })
+})
 
 const userList = asyncHandler(async(req,res,next)=> {
     const users = await User.find({"role": "user"})
@@ -236,20 +250,43 @@ const userList = asyncHandler(async(req,res,next)=> {
 })
 
 const getProjects = asyncHandler(async(req,res,next)=> {
-    const users = await User.aggregate([{
-        $lookup: {
-            from: Canvas.collection.name,//mongoose 
-            localField: "_id",//field from input doc
-            foreignField: "owner",//field from the documents of the "from" collection
-            as: "projectList"
+    const canvas = await Canvas.aggregate([
+        {
+            $lookup: {
+            from: User.collection.name,//mongoose 
+            localField: "users",//field from input doc
+            foreignField: "_id",//field from the documents of the "from" collection
+            as: "invitees"
         }
-    }]
-    ,function (error, data) {
+    },
+        {
+            $lookup: {
+            from: User.collection.name,//mongoose 
+            localField: "owner",//field from input doc
+            foreignField: "_id",//field from the documents of the "from" collection
+            as: "ownerDetails"
+        }
+    },
+    ],function (error, data) {
         return res.status(200).json({
             success: true,
             data: data
         });
-    });
+    })
+    // const users = await User.aggregate([{
+    //     $lookup: {
+    //         from: Canvas.collection.name,//mongoose 
+    //         localField: "_id",//field from input doc
+    //         foreignField: "owner",//field from the documents of the "from" collection
+    //         as: "projectList"
+    //     }
+    // }]
+    // ,function (error, data) {
+    //     return res.status(200).json({
+    //         success: true,
+    //         data: data
+    //     });
+    // });
     
 })
 
@@ -262,6 +299,7 @@ module.exports = {
     updateDetails, 
     updatePassword,
     deactivateUser, 
+    toogleUserStatus,
     userList,
     getProjects,
     logout

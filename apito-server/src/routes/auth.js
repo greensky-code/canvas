@@ -9,6 +9,7 @@ const {
     updatePassword, 
     logout,
     deactivateUser,
+    toogleUserStatus,
     userList,
     getProjects
 } = require('../controller/auth');
@@ -35,6 +36,8 @@ router
 
 router
     .put('/deactivate', deactivateUser)
+router
+    .put('/toogleUserStatus', toogleUserStatus)    
 router
     .get('/userList', userList)
 

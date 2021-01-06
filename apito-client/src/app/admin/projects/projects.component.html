@@ -10,29 +10,37 @@
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows>
         <!-- Name Column -->
-        <ng-container matColumnDef="name">
+        <ng-container matColumnDef="ownerName">
             <th mat-header-cell *matHeaderCellDef> Creator Name </th>
-            <td mat-cell *matCellDef="let data;let i = dataIndex" [attr.rowspan]="getRowSpan('name',i)" [style.display]="getRowSpan('name', i) ? '' : 'none'">
-             {{ data.name }} </td>
+            <td mat-cell *matCellDef="let data;let i = dataIndex">
+             {{ data.ownerDetails[0].name }} </td>
         </ng-container>
         <!-- Email Column -->
-        <ng-container matColumnDef="email">
+        <ng-container matColumnDef="ownerEmail">
             <th mat-header-cell *matHeaderCellDef> Creator Email </th>
-            <td mat-cell *matCellDef="let data;let i = dataIndex" [attr.rowspan]="getRowSpan('email',i)" [style.display]="getRowSpan('email', i) ? '' : 'none'">
-             {{ data.email }} </td>
+            <td mat-cell *matCellDef="let data;let i = dataIndex">
+             {{ data.ownerDetails[0].email }} </td>
         </ng-container>
         <!-- PROJECT Data Started -->
-        <ng-container matColumnDef="pr_name">
+        <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Project Name </th>
-            <td mat-cell *matCellDef="let data"> {{ data.pr_name }} </td>
+            <td mat-cell *matCellDef="let data"> {{ data.name }} </td>
         </ng-container>
-        <ng-container matColumnDef="pr_createdAt">
+        <ng-container matColumnDef="invitees">
+            <th mat-header-cell *matHeaderCellDef> Invitees(Email) </th>
+            <td mat-cell *matCellDef="let data"> 
+                <p *ngFor="let itv of data.invitees; let i = index">
+                    {{ itv.email }} 
+                </p>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="createdAt">
             <th mat-header-cell *matHeaderCellDef> Project Created At </th>
-            <td mat-cell *matCellDef="let data"> {{ data.pr_createdAt | date:'short' }} </td>
+            <td mat-cell *matCellDef="let data"> {{ data.createdAt | date:'short' }} </td>
         </ng-container>
-        <ng-container matColumnDef="pr_updatedAt">
+        <ng-container matColumnDef="updatedAt">
             <th mat-header-cell *matHeaderCellDef> Project Updated At </th>
-            <td mat-cell *matCellDef="let data"> {{ data.pr_updatedAt | date:'short' }} </td>
+            <td mat-cell *matCellDef="let data"> {{ data.updatedAt | date:'short' }} </td>
         </ng-container>
         <ng-container matColumnDef="options">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
