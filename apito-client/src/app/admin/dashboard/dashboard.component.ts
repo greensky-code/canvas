@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   isAuth
   user;
   form: FormGroup;
+  dialogRef: any;
   constructor(private authService: AuthService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -36,12 +37,12 @@ export class DashboardComponent implements OnInit {
   }
 
   openModal(templateRef) {
-    let dialogRef = this.dialog.open(templateRef, {
+    this.dialogRef = this.dialog.open(templateRef, {
          width: '250px',
          // data: { name: this.name, animal: this.animal }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    this.dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
         // this.animal = result;
     });
