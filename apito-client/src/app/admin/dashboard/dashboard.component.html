@@ -7,7 +7,7 @@
 <div class="container">
     <mat-grid-list cols="3" rowHeight="2:1">
         <mat-grid-tile>
-            <mat-card style="background-color: #ffa0a0;">
+            <mat-card [routerLink]="'/admin/dashboard/users'" style="background-color: #ffa0a0;">
                 <mat-card-title>Users List</mat-card-title>
                 <mat-card-content>
                   <p>
@@ -21,7 +21,7 @@
 
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card style="background-color: #a0ffca;">
+            <mat-card [routerLink]="'/admin/dashboard/companies'" style="background-color: #a0ffca;">
                 <mat-card-title>Companies List</mat-card-title>
                 <mat-card-content>
                   <p>
@@ -34,7 +34,7 @@
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card style="background-color: #ffca83;">
+            <mat-card [routerLink]="'/admin/dashboard/projects'" style="background-color: #ffca83;">
                 <mat-card-title>Projects List</mat-card-title>
                 <mat-card-content>
                   <p>
@@ -47,7 +47,7 @@
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card style="background-color: #4fc8dd;">
+            <mat-card (click)="openModal(addAdmin)" style="background-color: #4fc8dd;">
                 <mat-card-title>Add ADMIN</mat-card-title>
                 <mat-card-content>
                   <p>

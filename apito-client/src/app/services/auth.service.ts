@@ -51,6 +51,16 @@ export class AuthService {
       },1000)
     })
   }
+
+  forgotPassword(data) {
+    this.http.post(`${this.authUrl}forgotpassword`, data).subscribe(res => {
+      this.toastr.success("Password reset Succesfully")
+        setTimeout(()=>{
+          window.location.reload();
+        },1000)
+    })
+  }
+
   login(form, url) {
     console.log(url);
     

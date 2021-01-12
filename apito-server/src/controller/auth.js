@@ -103,6 +103,25 @@ const forgotPassword = asyncHandler(async(req,res,next)=> {
     await user.save({validateBeforeSave: false})
     //Send Email Utility of your Choice
     const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/resetpassword/${resetToken}`
+    var smtpTransport = nodemailer.createTransport('SMTP', {
+        service: 'SendGrid',
+        auth: {
+          user: 'canvas@gmail.com',
+          pass: 'tanmoy1234567890'
+        }
+      });
+      var mailOptions = {
+        to: user.email,
+        from: 'canvas@gmail.com',
+        subject: 'Canvas Password Reset',
+        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+          resetUrl
+      };
+      smtpTransport.sendMail(mailOptions, function(err) {
+        req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+        done(err, 'done');
+      });
     res.status(200).json({
         success: true,
         data: resetUrl
@@ -138,33 +157,42 @@ const resetPassword = asyncHandler(async(req,res,next)=> {
 const updateDetails = asyncHandler(async(req,res,next)=> {
     const {name, email, fileSource, birthday} = req.body
     let fields;
-    if(fileSource.startsWith("http")) {
+    if(fileSource == undefined) {
         fields = {
             name,
             email,
-            fileSource,
             birthday
         }
     } else {
-        if(fileSource.length == 0) {
+        if(fileSource.startsWith("http")) {
             fields = {
                 name,
                 email,
+                fileSource,
                 birthday
             }
         } else {
-            //with new image
-            let newFile = await cloudinary.uploader.upload(fileSource);
-            fields = {
-                name,
-                email,
-                fileSource: newFile.url,
-                public_id: newFile.public_id,
-                birthday
+            if(fileSource.length == 0) {
+                fields = {
+                    name,
+                    email,
+                    birthday
+                }
+            } else {
+                //with new image
+                let newFile = await cloudinary.uploader.upload(fileSource);
+                fields = {
+                    name,
+                    email,
+                    fileSource: newFile.url,
+                    public_id: newFile.public_id,
+                    birthday
+                }
             }
+            
         }
-        
     }
+    
     console.log(fields);
     const user = await User.findByIdAndUpdate(req.body.user.id, fields, {
         new:true,

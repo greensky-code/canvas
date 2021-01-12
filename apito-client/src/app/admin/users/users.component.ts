@@ -45,4 +45,10 @@ export class UsersComponent implements OnInit {
       status: !ele.active
     }); 
   }
+
+  resetPassword(ele) {
+    this.authService.forgotPassword({
+      email: ele.email
+    })
+  }
 }
