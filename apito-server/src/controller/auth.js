@@ -3,6 +3,7 @@ const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const User = require('../models/User');
 const Canvas = require('../models/Canvas');
+const nodemailer = require('nodemailer');
 const cloudinary = require('cloudinary').v2
 
 cloudinary.config({
