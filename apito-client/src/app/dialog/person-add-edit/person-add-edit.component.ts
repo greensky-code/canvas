@@ -43,10 +43,10 @@ export class PersonAddEditComponent implements OnInit {
     });
     this.form = new FormGroup({
       email: new FormControl('', { validators: [Validators.required, Validators.minLength(3)] }),
-      name: new FormControl('', { validators: [Validators.required, Validators.minLength(3)] }),
+      name: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
       type: new FormControl('', { validators: [Validators.required] }),
       birthday: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
-      address: new FormControl('', { validators: [Validators.required, Validators.minLength(5)] }),
+      address: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
       phone: new FormControl('', { validators: [Validators.required, Validators.minLength(10)] })
     });
     this.fetchRecord();
@@ -79,6 +79,7 @@ export class PersonAddEditComponent implements OnInit {
     if (this.data.mode == 'add') {
       //add mode
       if (this.form.invalid) {
+        alert("All fields are mandatory.")
         return;
       }
       this.form.value.user_id = this.user._id

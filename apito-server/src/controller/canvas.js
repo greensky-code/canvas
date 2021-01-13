@@ -184,4 +184,11 @@ const getAllShapes = asyncHandler(async(req, res, next)=>{
         data: userLayer
     })
 })
-module.exports = { createCanvas, getUserCanvas, updateCanvas, getCanvasById, addUser, getLayersByid, getAllShapes }
+
+const deleteCanvas = asyncHandler(async(req,res,next)=> {
+    const company = await Canvas.deleteOne({_id: req.params.id});
+    res.status(200).json({
+        success: true
+    })
+})
+module.exports = { createCanvas, getUserCanvas, updateCanvas, getCanvasById, addUser, getLayersByid, getAllShapes, deleteCanvas }
