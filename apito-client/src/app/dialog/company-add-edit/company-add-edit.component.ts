@@ -30,8 +30,8 @@ export class CompanyAddEditComponent implements OnInit {
     });
     this.form = new FormGroup({
       email: new FormControl('', { validators: [Validators.required, Validators.minLength(3)] }),
-      name: new FormControl('', { validators: [Validators.required, Validators.minLength(3)] }),
-      address: new FormControl('', { validators: [Validators.required, Validators.minLength(5)] })
+      name: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
+      address: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] })
     });
     this.fetchRecord();
   }
@@ -54,6 +54,7 @@ export class CompanyAddEditComponent implements OnInit {
     if (this.data.mode == 'add') {
       //add mode
       if (this.form.invalid) {
+        alert("All fields are mandatory.");
         return;
       }
       this.form.value.user_id = this.user._id

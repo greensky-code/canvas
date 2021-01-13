@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service'
+import { AuthService } from '../../services/auth.service';
+import { CanvasService } from '../../services/canvas.service'
 
 @Component({
   selector: 'app-projects',
@@ -20,7 +21,9 @@ export class ProjectsComponent implements OnInit {
   dataSource: any;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private canvasService: CanvasService
+
   ) { }
 
   ngOnInit(): void {
@@ -37,5 +40,9 @@ export class ProjectsComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  deleteProject(ele) {
+    this.canvasService.deleteCanvas(ele._id)
   }
 }

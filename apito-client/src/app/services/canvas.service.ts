@@ -35,4 +35,12 @@ export class CanvasService {
   addUser(form) {
     return this.http.post(`${this.canvasUrl}add`, form)
   }
+  deleteCanvas(id){
+    this.http.delete(`${this.canvasUrl}deleteCanvas/${id}`).subscribe(res => {
+      this.toastr.success("Deleted Succesfully")
+      setTimeout(()=>{
+        window.location.reload();
+      },1000)
+    });
+  }
 }

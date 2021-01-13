@@ -104,7 +104,7 @@ const forgotPassword = asyncHandler(async(req,res,next)=> {
     await user.save({validateBeforeSave: false})
     //Send Email Utility of your Choice
     const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/resetpassword/${resetToken}`
-    var smtpTransport = nodemailer.createTransport('SMTP', {
+    var smtpTransport = nodemailer.createTransport({
         service: 'SendGrid',
         auth: {
           user: 'canvas@gmail.com',
@@ -119,9 +119,9 @@ const forgotPassword = asyncHandler(async(req,res,next)=> {
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
           resetUrl
       };
-      smtpTransport.sendMail(mailOptions, function(err) {
-        req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-        done(err, 'done');
+      smtpTransport.sendMail(mailOptions, (err, info) => {
+        console.log(err);
+        console.log(info);
       });
     res.status(200).json({
         success: true,

@@ -30,7 +30,7 @@
             <th mat-header-cell *matHeaderCellDef> Invitees(Email) </th>
             <td mat-cell *matCellDef="let data"> 
                 <p *ngFor="let itv of data.invitees; let i = index">
-                    {{ itv.email }} 
+                    <span *ngIf="itv.email !== data.ownerDetails[0].email">{{ itv.email }}</span>
                 </p>
             </td>
         </ng-container>
