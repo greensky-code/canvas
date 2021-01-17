@@ -15,10 +15,12 @@ export class PersonService {
   addPerson(form){
     const data = form
     console.log(data);
-    data.user_id = 
     this.http.post(`${this.personUrl}addPerson`, data).subscribe(res => {
+      console.log(res);
       this.toastr.success("Person added Succesfully")
-      //this.router.navigate(["/person"])
+      setTimeout(()=>{
+        window.location.reload();
+      }, 1000)
     })
   }
 
@@ -31,7 +33,10 @@ export class PersonService {
     console.log(data);
     this.http.put(`${this.personUrl}updatePerson`, data).subscribe(res => {
       this.toastr.success("Person Details Updated Succesfully")
-      this.router.navigate(["/person"])
+      this.router.navigate(["/person"]);
+      setTimeout(()=>{
+        window.location.reload();
+      }, 1000)
     })
   }
 

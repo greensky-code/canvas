@@ -3,8 +3,8 @@ const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const User = require('../models/User');
 const Canvas = require('../models/Canvas');
-const nodemailer = require('nodemailer');
 const cloudinary = require('cloudinary').v2
+const sendMail = require("../helper/mail");
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -104,25 +104,15 @@ const forgotPassword = asyncHandler(async(req,res,next)=> {
     await user.save({validateBeforeSave: false})
     //Send Email Utility of your Choice
     const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/resetpassword/${resetToken}`
-    var smtpTransport = nodemailer.createTransport({
-        service: 'SendGrid',
-        auth: {
-          user: 'canvas@gmail.com',
-          pass: 'tanmoy1234567890'
-        }
-      });
-      var mailOptions = {
+      await sendMail({
         to: user.email,
-        from: 'canvas@gmail.com',
-        subject: 'Canvas Password Reset',
-        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          resetUrl
-      };
-      smtpTransport.sendMail(mailOptions, (err, info) => {
-        console.log(err);
-        console.log(info);
-      });
+        from: "canvas@gmail.com",
+        fromname: "Apito",
+        subject: "Password Reset",
+        message: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+        'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+        resetUrl,
+    })
     res.status(200).json({
         success: true,
         data: resetUrl

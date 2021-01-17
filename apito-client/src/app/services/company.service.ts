@@ -18,7 +18,9 @@ addCompany(form){
   data.user_id = 
   this.http.post(`${this.companyUrl}addCompany`, data).subscribe(res => {
     this.toastr.success("Company added Succesfully")
-    //this.router.navigate(["/person"])
+    setTimeout(()=>{
+      window.location.reload();
+    }, 1000)
   })
 }
 
@@ -36,6 +38,9 @@ updateCompany(form) {
   this.http.put(`${this.companyUrl}updateCompany`, data).subscribe(res => {
     this.toastr.success("Company Details Updated Succesfully")
     this.router.navigate(["/company"])
+    setTimeout(()=>{
+      window.location.reload();
+    }, 1000)
   })
 }
 

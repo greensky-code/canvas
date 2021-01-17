@@ -42,7 +42,7 @@ export class PersonAddEditComponent implements OnInit {
       this.user = res.data;
     });
     this.form = new FormGroup({
-      email: new FormControl('', { validators: [Validators.required, Validators.minLength(3)] }),
+      email: new FormControl('', { validators: [Validators.required, Validators.email] }),
       name: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
       type: new FormControl('', { validators: [Validators.required] }),
       birthday: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
@@ -79,14 +79,11 @@ export class PersonAddEditComponent implements OnInit {
     if (this.data.mode == 'add') {
       //add mode
       if (this.form.invalid) {
-        alert("All fields are mandatory.")
+        alert("All fields are mandatory.");
         return;
       }
       this.form.value.user_id = this.user._id
       this.personService.addPerson(this.form.value);
-      setTimeout(()=>{
-        window.location.reload();
-      }, 1000)
     } else {
       //edit mode 
       if (this.form.invalid) {
@@ -96,9 +93,6 @@ export class PersonAddEditComponent implements OnInit {
         id: this.data._id
       }
       this.personService.updatePerson(this.form.value);
-      setTimeout(()=>{
-        window.location.reload();
-      }, 1000)
     }
   }
 

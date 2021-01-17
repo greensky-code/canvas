@@ -59,9 +59,6 @@ export class CompanyAddEditComponent implements OnInit {
       }
       this.form.value.user_id = this.user._id
       this.companyService.addCompany(this.form.value);
-      setTimeout(()=>{
-        window.location.reload();
-      }, 1000)
     } else {
       //edit mode 
       if (this.form.invalid) {
@@ -71,9 +68,6 @@ export class CompanyAddEditComponent implements OnInit {
         id: this.data._id
       }
       this.companyService.updateCompany(this.form.value);
-      setTimeout(()=>{
-        window.location.reload();
-      }, 1000)
     }
   }
 

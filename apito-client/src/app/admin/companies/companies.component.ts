@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyService } from 'src/app/services/company.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-companies',
@@ -16,7 +17,7 @@ export class CompaniesComponent implements OnInit {
     'cp_createdAt',
     'cp_updatedAt'
   ];
-  dataSource: any;
+  dataSource= new MatTableDataSource();
   spans = [];
 
   constructor(
@@ -36,7 +37,7 @@ export class CompaniesComponent implements OnInit {
           newDataSource.push(element);
         }
       });
-      this.dataSource = newDataSource.reduce((current, next) => {
+      let formatedDtSource = newDataSource.reduce((current, next) => {
         next.companyList.forEach(b => {
           current.push({ 
             name: next.name, 
@@ -49,7 +50,7 @@ export class CompaniesComponent implements OnInit {
         });
         return current;
       }, []);
-      console.log(this.dataSource)
+      this.dataSource.data = formatedDtSource;
       this.cacheSpan('name', d => d.name);
       this.cacheSpan('email', d => d.email);
       console.log(this.spans);
@@ -62,14 +63,14 @@ export class CompaniesComponent implements OnInit {
    * value that should be checked for spanning.
    */
   cacheSpan(key, accessor) {
-    for (let i = 0; i < this.dataSource.length;) {
-      let currentValue = accessor(this.dataSource[i]);
+    for (let i = 0; i < this.dataSource.data.length;) {
+      let currentValue = accessor(this.dataSource.data[i]);
       let count = 1;
 
       // Iterate through the remaining rows to see how many match
       // the current value as retrieved through the accessor.
-      for (let j = i + 1; j < this.dataSource.length; j++) {
-        if (currentValue != accessor(this.dataSource[j])) {
+      for (let j = i + 1; j < this.dataSource.data.length; j++) {
+        if (currentValue != accessor(this.dataSource.data[j])) {
           break;
         }
 
