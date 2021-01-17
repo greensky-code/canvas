@@ -106,7 +106,7 @@ const forgotPassword = asyncHandler(async(req,res,next)=> {
     const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/resetpassword/${resetToken}`
       await sendMail({
         to: user.email,
-        from: "canvas@gmail.com",
+        from: "freshloftfarms@gmail.com",
         fromname: "Apito",
         subject: "Password Reset",
         message: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
