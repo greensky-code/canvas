@@ -50,6 +50,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { UsersComponent } from './admin/users/users.component';
 import { CompaniesComponent } from './admin/companies/companies.component';
 import { ProjectsComponent } from './admin/projects/projects.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { ProjectsComponent } from './admin/projects/projects.component';
     DashboardComponent,
     UsersComponent,
     CompaniesComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { UsersComponent } from './admin/users/users.component';
 import { CompaniesComponent } from './admin/companies/companies.component';
 import { ProjectsComponent } from './admin/projects/projects.component';
+import { NotificationComponent } from './notification/notification.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'person', component: PersonComponent, canActivate: [AuthGuard]},
   {path: 'company', component: CompanyComponent, canActivate: [AuthGuard]},
+  {path: 'notification', component: NotificationComponent, canActivate: [AuthGuard]},
   {path: 'sign', component: SignupComponent},
   // {path: 'design', component: DesignComponent},
   {path: 'login', component: LoginComponent},

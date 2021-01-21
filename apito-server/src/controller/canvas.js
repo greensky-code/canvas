@@ -13,11 +13,12 @@ cloudinary.config({
 });
 
 const createCanvas = asyncHandler(async (req, res, next) => {
-    const { name, backImage } = req.body
+    const { name, backImage, category } = req.body
     let owner = req.user.id
     if (backImage.startsWith("http")) {
         const canvas = await Canvas.create({
             name,
+            category,
             owner,
             backImage,
             users: [owner]

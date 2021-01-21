@@ -12,6 +12,20 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CreateComponent implements OnInit {
   form: FormGroup;
+  canvasCat = [
+    {
+      viewValue: 'Birthday',
+      value: 'Birthday'
+    },
+    {
+      viewValue: 'Anniversary',
+      value: 'Anniversary'
+    },
+    {
+      viewValue: 'Other',
+      value: 'Other'
+    }
+  ]
   constructor(public dialogRef: MatDialogRef<CreateComponent>,
     @Inject(MAT_DIALOG_DATA) public data, private canvasService:CanvasService,  private router: Router, private toastr: ToastrService) { }
 
@@ -20,13 +34,15 @@ export class CreateComponent implements OnInit {
     
     this.form = new FormGroup({
       name: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
+      category: new FormControl('', { validators: [Validators.required] })
     })
 
   }
   onSubmit() {
     let data = {
       backImage: this.data.image,
-      name: this.form.value.name
+      name: this.form.value.name,
+      categoty: this.form.value.category
     }
     if (this.form.invalid) {
       return;

@@ -5,6 +5,9 @@ const CanvasSchema = new mongoose.Schema({
         unique: [true, "Name already used"],
         required: [true, "Please add a name"]
     },
+    category: {
+        type: String
+    },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
