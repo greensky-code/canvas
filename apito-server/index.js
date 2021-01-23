@@ -10,6 +10,7 @@ const auth = require("./src/routes/auth");
 const canvas = require("./src/routes/canvas");
 const person = require("./src/routes/person");
 const company = require("./src/routes/company");
+const reminder = require("./src/routes/reminder");
 
 const fileUpload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
@@ -59,6 +60,7 @@ app.use("/api/v1/auth", auth)
 app.use("/api/v1/canvas", canvas)
 app.use("/api/v1/person", person)
 app.use("/api/v1/company", company)
+app.use("/api/v1/reminder", reminder)
 
 
 

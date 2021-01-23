@@ -1,3 +1,13 @@
 .example-full-width {
     width: 100%;
   }
+  .tabcontent{
+    padding-top: 1em;
+}
+table {
+    width: 100%;
+  }
+
+  #Notification{
+      padding: 1em;
+  }

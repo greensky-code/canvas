@@ -44,6 +44,7 @@ export class DesignComponent implements OnInit, OnDestroy {
   image;
   name;
   user;
+  readyToexit: Boolean = false
   canvas;
   invertString = "invert(1)"
   stage: Konva.Stage;
@@ -515,7 +516,8 @@ export class DesignComponent implements OnInit, OnDestroy {
     return this.authService.getLoggedInUser()
   }
   saveToDb() {
-    this.saveTo = true
+    this.saveTo = true;
+    this.readyToexit = true;
     let shapes = []
     this.shapes.forEach(element => {
       let shapeObj = {}
@@ -749,6 +751,16 @@ export class DesignComponent implements OnInit, OnDestroy {
 
     //   // this.socket.emit('saved')
     // })
+  }
+
+  checkExit(){
+    debugger;
+    if(!this.readyToexit) {
+      alert("Save changes befor Exit")
+    } else {
+      location.href = "/design";
+    }
+
   }
 
 }
